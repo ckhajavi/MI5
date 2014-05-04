@@ -1,6 +1,10 @@
 #include "loginpage.h"
 #include <dummyfordownload.h>
 #include <QDebug>
+#include <stdio.h>
+#include <stdlib.h>
+#include <QString>
+
 using namespace std;
 
 LoginPage::LoginPage(QWidget *parent) :
@@ -83,6 +87,7 @@ void LoginPage::on_btnCalculate_clicked()
     string charToReplace;
     string tempVar;
     QString quantityOfShares;
+    double purchasePrice;
 
     quantityOfShares = ui->lineEditQuantity->text();
     qDebug() << quantityOfShares; // temp output
@@ -113,5 +118,12 @@ void LoginPage::on_btnCalculate_clicked()
     tempVar = input.substr(0, input.find(" ")); //Getting price per share.
     cout << tempVar << endl;
 
-   // cout << (tempVar * quantityOfShares.toDouble());
+    cout << atof(tempVar.c_str()) << endl;
+
+    purchasePrice = (atof(tempVar.c_str()) * quantityOfShares.toDouble());
+    cout << purchasePrice;
+
+    QString myQString = QString::number(purchasePrice); //Writing stock symbol to window.
+    ui->lineEditCalculatePurchase->setText(myQString);
+
 }
