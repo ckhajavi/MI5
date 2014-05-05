@@ -43,12 +43,14 @@ double Stock::buy(int shares)
     while(!in.atEnd())
     {
         line = in.readLine();                               //reading each line of text file, goes until a return is found
-        temp = line.split(" ");
+        temp = line.split(",");
     }
     for(int i = 0; i < temp.size(); ++i)
     {
-        qDebug() << temp.value(i);
+        qDebug() << temp.value(i) << endl;
     }
+    qDebug() <<temp.size() << endl;
+    qDebug() << temp.value(0) << " " << temp.value(7) << endl;
 
     if (ticker == "")
     {
