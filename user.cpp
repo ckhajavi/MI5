@@ -55,11 +55,12 @@ bool User::loadUser()
             temp.value(1) = "";
         }
         file.close();
-        QMap<QString, QString>::const_iterator i = userMap.constBegin();
+        QMap<QString, QString>::const_iterator i = userMap.constBegin(); //using an iterator to iterate through the Map
         while (i != userMap.constEnd()) {
             qDebug() << i.key() << " : " << i.value() << endl;
             ++i;
         }
+        //setting all variables to their corresponding values in the map of user info
         userName = userMap.value("userName");
         plainTextPassword = userMap.value("plainTextPassword");
         fName = userMap.value("fName");
