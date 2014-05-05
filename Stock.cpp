@@ -6,11 +6,11 @@ Stock::Stock()
     ticker = "";
     owned = false;
     numOfShares = 0;
-    currentPrice = 0;
+    latestPrice = 0;
     changeInPrice = 0;
     openPrice = 0;
-    todayHigh = 0;
-    todayLow = 0;
+    todaysHigh = 0;
+    todaysLow = 0;
     volume = 0;
 }
 
@@ -20,11 +20,11 @@ Stock::Stock(QString newTicker)
     ticker = newTicker;
     owned = false;
     numOfShares = 0;
-    currentPrice = 0;
+    latestPrice = 0;
     changeInPrice = 0;
     openPrice = 0;
-    todayHigh = 0;
-    todayLow = 0;
+    todaysHigh = 0;
+    todaysLow = 0;
     volume = 0;
 }
 
@@ -42,8 +42,10 @@ double Stock::buy(int shares)
     QStringList temp;
     while(!in.atEnd())
     {
-        line = in.readLine();                               //reading each line of text file, goes until a return is found
+        line = in.readLine();
+        line = line.remove("");//reading each line of text file, goes until a return is found
         temp = line.split(",");
+
     }
     for(int i = 0; i < temp.size(); ++i)
     {
@@ -56,16 +58,16 @@ double Stock::buy(int shares)
     {
         ticker = temp.value(0);
     }
-    currentPrice = temp.value(1).toDouble();
+    latestPrice = temp.value(1).toDouble();
     date = temp.value(2);
     time = temp.value(3);
     changeInPrice = temp.value(4).toDouble();
     openPrice = temp.value(5).toDouble();
-    todayHigh = temp.value(6).toDouble();
-    todayLow = temp.value(7).toDouble();
+    todaysHigh = temp.value(6).toDouble();
+    todaysLow = temp.value(7).toDouble();
     volume = temp.value(8).toDouble();
 
-    cost = currentPrice*shares;
+    cost = latestPrice*shares;
     return cost;
 }
 
@@ -74,10 +76,7 @@ bool Stock::isOwned()
     return owned;
 }
 
-void Stock::addToFavorites()
-{
-    //add to stock list
-}
+
 
 
 

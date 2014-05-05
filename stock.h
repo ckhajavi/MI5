@@ -13,8 +13,32 @@ public:
     Stock(QString);
     double buy(int);
     double sell(int);
+
+    //setter functions
+    void setAsOwned(bool);
+    void setTicker( const QString&);
+    void setNumOfShares(int);
+    void setDate(const QString&);
+    void setTime(const QString&);
+    void setLatestPrice(double);
+    void setChangeInPrice(double);
+    void setOpenPrice(double);
+    void setTodaysHigh(double);
+    void setTodaysLow(double);
+    void setVolume(double);
+
+    //getter functions
     bool isOwned();
-    void addToFavorites();
+    QString getTicker() const;
+    int getShares() const;
+    QString getDate() const;
+    QString getTime() const;
+    double getLatestPrice() const;
+    double getChangeInPrice() const;
+    double getOpenPrice() const;
+    double getTodaysHigh() const;
+    double getTodaysLow() const;
+    double getVolume()const;
 
 private:
     int numOfShares;
@@ -22,11 +46,11 @@ private:
     QString ticker;
     QString date;
     QString time;
-    double currentPrice;
+    double latestPrice;
     double changeInPrice;
     double openPrice;
-    double todayHigh;
-    double todayLow;
+    double todaysHigh;
+    double todaysLow;
     double volume;
 
 
