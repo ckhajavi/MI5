@@ -43,7 +43,7 @@ double Stock::buy(int shares)
     while(!in.atEnd())
     {
         line = in.readLine();
-        line = line.remove("");//reading each line of text file, goes until a return is found
+        line = line.remove(QRegExp("\""));//reading each line of text file, goes until a return is found
         temp = line.split(",");
 
     }
