@@ -127,3 +127,10 @@ void LoginPage::on_btnCalculate_clicked()
     ui->lineEditCalculatePurchase->setText(myQString);
 
 }
+
+void LoginPage::on_btnReset_clicked()
+{
+    ui->lineEditSearchSymbol->clear();
+    ui->lineEditQuantity->clear();
+    ui->lineEditCalculatePurchase->clear();
+}

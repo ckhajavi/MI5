@@ -48,6 +48,8 @@ private slots:
 
     void on_btnCalculate_clicked();
 
+    void on_btnReset_clicked();
+
 private:
     Ui::LoginPage *ui;
     StockSearch *stockSearchWindow;
