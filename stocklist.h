@@ -4,6 +4,7 @@
 #include"stock.h"
 #include <QString>
 
+
 class StockList
 {
 public:
@@ -11,14 +12,17 @@ public:
     StockList();
     void addStock(const Stock&);
     void deleteStock();
-    void buyStock();
+    double calculateTotalSpent();//calculates how much was originally spent on buying price
+    double calculateStockTotalValue();
+
+
 
 
 
 private:
     QMap<QString, Stock> *stockMap;
-    double totalSpent;
-
+    double totalSpent; //total spent on stocks with bought for price;
+    double stockTotalValue;
 };
 
 #endif // STOCKLIST_H

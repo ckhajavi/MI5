@@ -1,5 +1,6 @@
 #include "stock.h"
-#include <QString>
+#include "stockList.h"
+
 
 Stock::Stock()
 {
@@ -28,6 +29,39 @@ Stock::Stock(QString newTicker)
     todaysLow = 0;
     volume = 0;
     cost = 0;
+}
+
+Stock& Stock::operator=(const Stock& rightSide )
+{
+    if (this != &rightSide)
+    {
+        ticker = rightSide.ticker;
+        owned = rightSide.owned;
+        numOfShares = rightSide.numOfShares;
+        latestPrice = rightSide.latestPrice;
+        changeInPrice = rightSide.changeInPrice;
+        openPrice = rightSide.openPrice;
+        todaysHigh = rightSide.todaysHigh;
+        todaysLow = rightSide.todaysLow;
+        volume = rightSide.volume;
+        cost = rightSide.cost;
+    }
+    return *this;
+}
+
+Stock operator+(const Stock& leftSide, const Stock& rightSide)
+{
+    Stock temp;
+    temp.ticker = rightSide.ticker;
+    temp.owned = true;
+    temp.numOfShares = rightSide.numOfShares + leftSide.numOfShares;
+    temp.changeInPrice = rightSide.changeInPrice;
+    temp.todaysHigh = rightSide.todaysHigh;
+    temp.todaysLow = rightSide.todaysLow;
+    temp.volume = rightSide.volume;
+    temp.cost = rightSide.cost + leftSide.cost;
+
+    return temp;
 }
 
 void Stock::buy(int shares)
@@ -72,11 +106,25 @@ void Stock::buy(int shares)
 
 }
 
-bool Stock::isOwned()
+bool Stock::isOwned() const
 {
     return owned;
 }
 
+double Stock::getCost()const
+{
+    return cost;
+}
+
+double Stock::getLatestPrice()const
+{
+    return latestPrice;
+}
+
+QString Stock::getTicker() const
+{
+    return ticker;
+}
 
 
 

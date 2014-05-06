@@ -1,9 +1,4 @@
 #include "loginpage.h"
-#include <dummyfordownload.h>
-#include <QDebug>
-#include <stdio.h>
-#include <stdlib.h>
-#include <QString>
 #include "user.h"
 
 using namespace std;
@@ -147,4 +142,5 @@ void LoginPage::on_btnMakeTrade_clicked()
 {
     Stock currentStock(ui->lineEditSearchSymbol->text());
     currentStock.buy(ui->lineEditQuantity->text().toInt());
+    currentUser->userStockList.addStock(currentStock);
 }

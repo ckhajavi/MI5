@@ -8,11 +8,14 @@
 //Think about this user Finance friend class of user
 class Stock
 {
+    friend Stock operator+(const Stock&, const Stock&);
 public:
     Stock();
     Stock(QString);
     void buy(int);
     double sell(int);
+
+    Stock& operator=(const Stock&);
 
     //setter functions
     void setAsOwned(bool);
@@ -28,7 +31,7 @@ public:
     void setVolume(double);
 
     //get functions
-    bool isOwned();
+    bool isOwned() const;
     QString getTicker() const;
     int getShares() const;
     QString getDate() const;
@@ -39,6 +42,8 @@ public:
     double getTodaysHigh() const;
     double getTodaysLow() const;
     double getVolume()const;
+    double getCost() const;
+
 
 private:
     int numOfShares;
@@ -53,7 +58,8 @@ private:
     double todaysLow;
     double volume;
 
-    double cost;
+    double cost;  //the price that the user bought it for
+
 
 
 

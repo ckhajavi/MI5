@@ -10,7 +10,7 @@
 #include <QDebug>
 #include<Qmap>
 #include<QStringList>
-#include"stocklist.h"
+#include<stocklist.h>
 
 using namespace std;
 
@@ -24,6 +24,7 @@ public:
     //default constructor
     //friend class NewUserSetup;
     User();
+    StockList userStockList;
 
     void setFileName();
     void setFileName(const QString&);
@@ -79,6 +80,7 @@ public:
     QString getSecurityAnswer2() const;
     QString getPassword() const;
     enumGender getGender() const;
+    double totalCostOfStocks(const StockList&);
 
 private:
     QString userName;
@@ -102,11 +104,8 @@ private:
     QString securityAnswer2;
     enumGender gender;
     QMap<QString, QString> userMap;
-
     QStringList userArray;
-
     QString fileName;
-
 };
 
 #endif // USER_H

@@ -1,10 +1,6 @@
 #include "stocksearch.h"
 #include "ui_stocksearch.h"
-#include "dummyfordownload.h"
-#include <string>
-#include <iostream>
-#include <algorithm>
-#include <QString>
+
 using namespace std;
 
 StockSearch::StockSearch(QWidget *parent) :
