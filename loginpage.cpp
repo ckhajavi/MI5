@@ -134,3 +134,9 @@ void LoginPage::on_btnReset_clicked()
     ui->lineEditQuantity->clear();
     ui->lineEditCalculatePurchase->clear();
 }
+
+void LoginPage::on_btnMakeTrade_clicked()
+{
+    Stock currentStock(ui->lineEditSearchSymbol->text());
+    currentStock.buy(ui->lineEditQuantity->text().toInt());
+}

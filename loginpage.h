@@ -16,6 +16,7 @@
 #include <QNetworkAccessManager>
 #include <dummyfordownload.h>
 #include <fstream>
+#include "stock.h"
 
 using namespace std;
 
@@ -49,6 +50,8 @@ private slots:
     void on_btnCalculate_clicked();
 
     void on_btnReset_clicked();
+
+    void on_btnMakeTrade_clicked();
 
 private:
     Ui::LoginPage *ui;
