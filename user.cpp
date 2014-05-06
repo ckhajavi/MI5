@@ -100,6 +100,7 @@ void User::saveUser()
             ++i;
         }
         file.close();
+
 }
 
 void User::setUserName(const QString& newUserName )

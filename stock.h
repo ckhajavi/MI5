@@ -11,7 +11,7 @@ class Stock
 public:
     Stock();
     Stock(QString);
-    double buy(int);
+    void buy(int);
     double sell(int);
 
     //setter functions
@@ -27,7 +27,7 @@ public:
     void setTodaysLow(double);
     void setVolume(double);
 
-    //getter functions
+    //get functions
     bool isOwned();
     QString getTicker() const;
     int getShares() const;
@@ -52,6 +52,8 @@ private:
     double todaysHigh;
     double todaysLow;
     double volume;
+
+    double cost;
 
 
 

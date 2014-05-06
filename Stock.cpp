@@ -12,6 +12,7 @@ Stock::Stock()
     todaysHigh = 0;
     todaysLow = 0;
     volume = 0;
+    cost = 0;
 }
 
 //Overloaded
@@ -26,13 +27,13 @@ Stock::Stock(QString newTicker)
     todaysHigh = 0;
     todaysLow = 0;
     volume = 0;
+    cost = 0;
 }
 
-double Stock::buy(int shares)
+void Stock::buy(int shares)
 {
     owned = true;
     numOfShares = shares;
-    double cost;
     //add to stock list
 
     QFile file("stockInfo.txt");
@@ -68,7 +69,7 @@ double Stock::buy(int shares)
     volume = temp.value(8).toDouble();
 
     cost = latestPrice*shares;
-    return cost;
+
 }
 
 bool Stock::isOwned()
