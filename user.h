@@ -7,8 +7,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
-//#include"wrongfiledialog.h"
-//#include "addfilepath.h"
 #include <QDebug>
 #include<Qmap>
 #include<QStringList>
@@ -106,7 +104,7 @@ private:
     QMap<QString, QString> userMap;
 
     QStringList userArray;
-    //wrongFileDialog *wrongFile;
+
     QString fileName;
 
 };

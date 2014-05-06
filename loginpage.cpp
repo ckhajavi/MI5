@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <QString>
+#include "user.h"
 
 using namespace std;
 
@@ -12,6 +13,12 @@ LoginPage::LoginPage(QWidget *parent) :
     ui(new Ui::LoginPage)
 {
     ui->setupUi(this);
+    currentUser = new User;
+}
+void LoginPage::setCurrentUser(User* theUser)
+{
+   currentUser->setEmail(theUser->getEmail());
+    qDebug() << currentUser->getEmail() <<endl;
 }
 
 void LoginPage::logOut()
@@ -23,6 +30,7 @@ void LoginPage::logOut()
 LoginPage::~LoginPage()
 {
     delete ui;
+    delete currentUser;
 }
 
 void LoginPage::on_btnLogOut1_clicked()

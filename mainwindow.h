@@ -16,6 +16,7 @@
 #include <QString>
 #include <QDebug>
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -45,6 +46,7 @@ private:
     NewUserSetup *newUser;
     ForgotPasswordDialog *forgotPasswordWindow;
     LoginPage *myLoginDialog;
+    User *currentUser;
 };
 
 #endif // MAINWINDOW_H
