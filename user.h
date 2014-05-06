@@ -28,6 +28,7 @@ public:
 
     void setFileName();
     void setFileName(const QString&);
+    bool setDirectory();
     bool loadUser();
     void saveUser();
     //set functions

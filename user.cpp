@@ -7,23 +7,51 @@ User::User()
 
 }
 
+bool User::setDirectory(){
+
+    QDir directory;
+    fileName = directory.homePath();
+    fileName.append("/VDMS_USER");
+    QDir directoryTemp(fileName);
+    if (!directoryTemp.exists())
+    {
+        directory.mkdir(fileName);
+        return true;
+    }
+    else
+        return false;
+}
+
 void User::setFileName()
 {
     QDir directory;
-    fileName = directory.homePath();   //file name is the name of the file where user info is saved, set it to user's home directory
-    fileName.append("/");              // added / to the name
-    fileName.append(email);            // name of file is user email
-    fileName.append(".txt");
-    qDebug() << fileName;               //just debugging
+    fileName = directory.homePath();
+    fileName.append("/VDMS_USER");
+    QDir directoryTemp(fileName);
+    if (!directoryTemp.exists())
+    {
+        directory.mkdir(fileName);
+        fileName.append("/");
+        fileName.append(email);            // name of file is user email
+        fileName.append(".txt");
+    }
+    else
+    {                                  //file name is the name of the file where user info is saved, set it to user's home directory
+        fileName.append("/");              // added / to the name
+        fileName.append(email);            // name of file is user email
+        fileName.append(".txt");
+        qDebug() << fileName;
+    }//just debugging
     
 }
 
 //overloaded setfileName
 void User::setFileName(const QString& currentEmail)
 {
-    QDir directory;                                    //set file name to whatever the parameter currentEmail is
+    QDir directory;
     fileName = directory.homePath();
-    fileName.append("/");
+    fileName.append("/VDMS_USER");
+    directory.mkdir(fileName);
     fileName.append(currentEmail);
     fileName.append(".txt");
     qDebug() << fileName;

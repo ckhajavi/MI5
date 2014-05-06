@@ -47,3 +47,6 @@ double StockList::calculateStockTotalValue()
     stockTotalValue = totalWorth;
     return totalWorth;
 }
+StockList::~StockList(){
+    delete stockMap;
+}

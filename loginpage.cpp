@@ -14,6 +14,7 @@ void LoginPage::setCurrentUser(User* theUser)
 {
    currentUser->setEmail(theUser->getEmail());
     qDebug() << currentUser->getEmail() <<endl;
+    currentUser = theUser;
 }
 
 void LoginPage::logOut()

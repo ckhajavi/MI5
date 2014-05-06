@@ -10,6 +10,7 @@ class StockList
 public:
     friend class User;
     StockList();
+    ~StockList();
     void addStock(const Stock&);
     void deleteStock();
     double calculateTotalSpent();//calculates how much was originally spent on buying price
