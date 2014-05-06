@@ -6,7 +6,7 @@
 #include "newusersetup.h"
 #include "forgotpassworddialog.h"
 #include "loginpage.h"
-
+#include <QMessageBox>
 #include "ui_mainwindow.h"
 #include <QtCore>
 #include <QtGui>

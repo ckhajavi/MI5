@@ -42,6 +42,7 @@ void MainWindow::on_btnLogIn_clicked()
     //check to see if password matches
     if( !currentUser.loadUser())
     {
+        QMessageBox::information(this, "Login Failed", "User does not exist.");
         qDebug() << "sorry could not find user" <<endl;
     }
     else if(ui->lineEditPassword->text() == password)
@@ -53,7 +54,8 @@ void MainWindow::on_btnLogIn_clicked()
     else
     {
         // change into a dialogue box when anyone gets the chance
-        qDebug() << "Sorry wrong user name/ password combination" <<endl;
+        QMessageBox::information(this, "Login Failed", "Sorry, wrong user name/password combination");
+        qDebug() << "Sorry wrong user name/password combination" <<endl;
         qDebug() << password;
     }
 
