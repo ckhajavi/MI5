@@ -15,13 +15,14 @@ void LoginPage::setCurrentUser(User* theUser)
    //currentUser->setEmail(theUser->getEmail());
     //qDebug() << currentUser->getEmail() <<endl;
     currentUser = theUser;
-    if(currentUser->userStockList.todaysGains() < 0)
+    QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
+    if(currentUser->userStockList.getTodaysGains() < 0)
     {
-        ui->lineEdit_todaysLosses->text() = currentUser->userStockList.todaysGains();
+        ui->lineEdit_todaysLosses->setText(todaysGains);
     }
     else
     {
-        ui->lineEdit_TodaysGains->text() = currentUser->userStockList.todaysGains();
+        ui->lineEdit_TodaysGains->setText(todaysGains);
     }
 }
 
@@ -152,4 +153,7 @@ void LoginPage::on_btnMakeTrade_clicked()
     Stock currentStock(ui->lineEditSearchSymbol->text());
     currentStock.buy(ui->lineEditQuantity->text().toInt());
     currentUser->userStockList.addStock(currentStock);
+    //update account info on screen: total gains etc
+    QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
+    ui->lineEdit_TodaysGains->setText(todaysGains);
 }
