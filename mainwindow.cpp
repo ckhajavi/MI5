@@ -49,8 +49,8 @@ void MainWindow::on_btnLogIn_clicked()
     else if(ui->lineEditPassword->text() == password)
     {
         myLoginDialog = new LoginPage(this);
-        myLoginDialog->setCurrentUser(currentUser);//open the next window
         myLoginDialog->exec();
+        myLoginDialog->setCurrentUser(currentUser);//open the next window
         qDebug() << password;
     }
     else
@@ -59,6 +59,8 @@ void MainWindow::on_btnLogIn_clicked()
         qDebug() << "Sorry wrong user name/ password combination" <<endl;
         qDebug() << password;
     }
+
+
 
 }
 

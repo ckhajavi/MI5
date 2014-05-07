@@ -126,6 +126,15 @@ QString Stock::getTicker() const
     return ticker;
 }
 
+int Stock::getShares() const
+{
+    return numOfShares;
+}
+
+double Stock::getOpenPrice() const
+{
+    return openPrice;
+}
 
 
 
