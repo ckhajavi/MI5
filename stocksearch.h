@@ -7,6 +7,7 @@
 #include <string>
 #include "DownloadManager.h"
 #include "dummyfordownload.h"
+#include "user.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class StockSearch : public QDialog
 
 public:
     explicit StockSearch(QWidget *parent = 0);
+    void setCurrentUser(User*);
 
     StockSearch(QUrl&);
 
@@ -37,6 +39,7 @@ private slots:
 private:
     Ui::StockSearch *ui;
     DummyForDownload *dummyWindow;
+    User *currentUser;
 
 };
 

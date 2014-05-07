@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -669,16 +669,6 @@
        </property>
        <property name="text">
         <string>Log Out</string>
-       </property>
-      </widget>
-      <widget class="QLCDNumber" name="lcdNumber">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>40</y>
-         <width>81</width>
-         <height>21</height>
-        </rect>
        </property>
       </widget>
      </widget>
