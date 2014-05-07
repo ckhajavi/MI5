@@ -153,6 +153,7 @@ void LoginPage::on_btnMakeTrade_clicked()
     Stock currentStock(ui->lineEditSearchSymbol->text());
     currentStock.buy(ui->lineEditQuantity->text().toInt());
     currentUser->userStockList.addStock(currentStock);
+    
     //update account info on screen: total gains etc
     QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
     if(currentUser->userStockList.getTodaysGains() < 0)
