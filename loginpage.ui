@@ -57,24 +57,11 @@
         <rect>
          <x>430</x>
          <y>30</y>
-         <width>121</width>
+         <width>126</width>
          <height>161</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <widget class="QPushButton" name="btnAddStock">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Add Stock</string>
-          </property>
-         </widget>
-        </item>
         <item>
          <widget class="QPushButton" name="btnRefresh">
           <property name="font">
@@ -84,7 +71,20 @@
            </font>
           </property>
           <property name="text">
-           <string>Refresh</string>
+           <string>Refresh List</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Remove Stock</string>
           </property>
          </widget>
         </item>
@@ -97,7 +97,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Update Info</string>
+           <string>Update Account Info</string>
           </property>
          </widget>
         </item>
@@ -110,7 +110,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Search</string>
+           <string>Search Stock</string>
           </property>
          </widget>
         </item>
