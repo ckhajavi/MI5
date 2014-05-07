@@ -1,5 +1,6 @@
 #include "stocklist.h"
 
+
 StockList::StockList()
 {
     stockMap = new QMap<QString, Stock>;

@@ -7,7 +7,7 @@
 #include <string>
 #include "DownloadManager.h"
 #include "dummyfordownload.h"
-#include "user.h"
+class User;
 
 using namespace std;
 

@@ -22,6 +22,7 @@ public:
     void setStockTotal(); //calculates how much total money is tied in stocks
     void setTotalGains();       //calculates how much has been lost or gained in stock investments
     void setTodaysGains();      //calculates the day's gains from opening price to current price.
+    //write print function that writes to
 
     //get functions
     double getTotalSpent();

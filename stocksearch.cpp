@@ -1,5 +1,6 @@
 #include "stocksearch.h"
 #include "ui_stocksearch.h"
+#include "user.h"
 
 using namespace std;
 
