@@ -12,9 +12,17 @@ LoginPage::LoginPage(QWidget *parent) :
 }
 void LoginPage::setCurrentUser(User* theUser)
 {
-   currentUser->setEmail(theUser->getEmail());
-    qDebug() << currentUser->getEmail() <<endl;
+   //currentUser->setEmail(theUser->getEmail());
+    //qDebug() << currentUser->getEmail() <<endl;
     currentUser = theUser;
+    if(currentUser->userStockList.todaysGains() < 0)
+    {
+        ui->lineEdit_todaysLosses->text() = currentUser->userStockList.todaysGains();
+    }
+    else
+    {
+        ui->lineEdit_TodaysGains->text() = currentUser->userStockList.todaysGains();
+    }
 }
 
 void LoginPage::logOut()
