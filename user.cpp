@@ -52,6 +52,7 @@ void User::setFileName(const QString& currentEmail)
     fileName = directory.homePath();
     fileName.append("/VDMS_USER");
     directory.mkdir(fileName);
+    fileName.append("/");
     fileName.append(currentEmail);
     fileName.append(".txt");
     qDebug() << fileName;
