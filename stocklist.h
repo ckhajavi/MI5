@@ -9,12 +9,17 @@ class StockList
 {
 public:
     friend class User;
+
     StockList();
     ~StockList();
     void addStock(const Stock&);
     void deleteStock();
-    double calculateTotalSpent();//calculates how much was originally spent on buying price
-    double calculateStockTotalValue();
+    double totalCost(); //calculates how much was originally spent on buying price
+    double stockTotal(); //calculates how much total money is tied in stocks
+    double totalGain();       //calculates how much has been lost or gained in stock investments
+    double todaysGains();      //calculates the day's gains from opening price to current price.
+    bool saveStockList();
+    bool loadStockList();
 
 
 
