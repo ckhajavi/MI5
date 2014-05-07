@@ -45,6 +45,7 @@ public:
     double getCost() const;
 
 
+
 private:
     int numOfShares;
     bool owned;
