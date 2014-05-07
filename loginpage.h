@@ -18,7 +18,7 @@
 #include <fstream>
 #include "stock.h"
 //#include "user.h"
-#include "stock.h";
+#include "stock.h"
 class User;
 
 using namespace std;
