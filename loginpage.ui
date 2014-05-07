@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -574,9 +574,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_7">
+         <widget class="QLineEdit" name="lineEdit_TodaysGains">
           <property name="text">
-           <string>0</string>
+           <string/>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -606,7 +606,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_8">
+         <widget class="QLineEdit" name="lineEdit_todaysLosses">
           <property name="text">
            <string>0</string>
           </property>
@@ -687,8 +687,8 @@
   <tabstop>lineEditCalculatePurchase</tabstop>
   <tabstop>btnReset</tabstop>
   <tabstop>btnMakeTrade</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>lineEdit_8</tabstop>
+  <tabstop>lineEdit_TodaysGains</tabstop>
+  <tabstop>lineEdit_todaysLosses</tabstop>
   <tabstop>lineEdit_9</tabstop>
  </tabstops>
  <resources/>

@@ -44,21 +44,25 @@ void MainWindow::on_btnLogIn_clicked()
     //check to see if password matches
     if( !currentUser->loadUser())
     {
+        QMessageBox::information(this, "Login Failed", "sorry could not find user");
         qDebug() << "sorry could not find user" <<endl;
     }
     else if(ui->lineEditPassword->text() == password)
     {
         myLoginDialog = new LoginPage(this);
-        myLoginDialog->setCurrentUser(currentUser);//open the next window
         myLoginDialog->exec();
+        myLoginDialog->setCurrentUser(currentUser);//open the next window
         qDebug() << password;
     }
     else
     {
         // change into a dialogue box when anyone gets the chance
+        QMessageBox::information(this, "Login Failed", "Sorry wrong user name/ password combination");
         qDebug() << "Sorry wrong user name/ password combination" <<endl;
         qDebug() << password;
     }
+
+
 
 }
 

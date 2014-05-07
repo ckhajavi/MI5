@@ -15,6 +15,7 @@
 #include <QObject>
 #include <QString>
 #include <QDebug>
+#include <QMessageBox>
 
 
 namespace Ui {

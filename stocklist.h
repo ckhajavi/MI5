@@ -9,21 +9,33 @@ class StockList
 {
 public:
     friend class User;
+
     StockList();
     ~StockList();
+    bool saveStockList();
+    bool loadStockList();
+
     void addStock(const Stock&);
     void deleteStock();
-    double calculateTotalSpent();//calculates how much was originally spent on buying price
-    double calculateStockTotalValue();
+    //These are like update functions, updates their member variables
+    void setTotalSpent(); //calculates how much was originally spent on buying price
+    void setStockTotal(); //calculates how much total money is tied in stocks
+    void setTotalGains();       //calculates how much has been lost or gained in stock investments
+    void setTodaysGains();      //calculates the day's gains from opening price to current price.
 
-
-
+    //get functions
+    double getTotalSpent();
+    double getStockTotal();
+    double getTodaysGains();
+    double getTotalGains();
 
 
 private:
     QMap<QString, Stock> *stockMap;
     double totalSpent; //total spent on stocks with bought for price;
-    double stockTotalValue;
+    double stockTotal;
+    double todaysGains;
+    double totalGains;
 };
 
 #endif // STOCKLIST_H
