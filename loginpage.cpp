@@ -178,7 +178,12 @@ void LoginPage::on_btnBuyShares_clicked()
     }
     */
 
-    //addToTable();
+    int numOfRows = ui->tableWidget->rowCount();
+    for (int i = numOfRows; i > 0; i--)
+    {
+        ui->tableWidget->removeRow(i - 1);
+    }
+    addToTable();
 
 }
 
@@ -195,6 +200,5 @@ void LoginPage::on_btnRefresh_clicked()
 void LoginPage::on_btnRemoveStock_clicked()
 {
     int rowToRemove = ui->tableWidget->currentRow();
-    qDebug() << rowToRemove;
     ui->tableWidget->removeRow(rowToRemove);
 }
