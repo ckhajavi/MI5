@@ -26,6 +26,21 @@ void LoginPage::setCurrentUser(User* theUser)
     }
 }
 
+void LoginPage::addToTable()
+{
+
+    int j = 0;
+    QMap<QString, Stock>::const_iterator i = currentUser->userStockList.stockMap->constBegin(); //using an iterator to iterate through the Map
+   // while (i != currentUser->userStockList.stockMap->constEnd())
+   // {
+      // ui->tableWidget->setItem(0, j, new QTableWidgetItem(QString::number(i.value().getShares())));
+      // i++;
+   // }
+    ui->tableWidget->insertRow(1);
+
+   //ui->tableWidget->setItem(0, 0, new QTableWidgetItem("HELLO"));
+}
+
 void LoginPage::logOut()
 {
     QMessageBox::information(this, "Logging Out", "You have successfully logged out.");
@@ -154,6 +169,19 @@ void LoginPage::on_btnMakeTrade_clicked()
     currentStock.buy(ui->lineEditQuantity->text().toInt());
     currentUser->userStockList.addStock(currentStock);
     //update account info on screen: total gains etc
-    QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
-    ui->lineEdit_TodaysGains->setText(todaysGains);
+  //  QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
+
+    /*
+    if(currentUser->userStockList.getTodaysGains() < 0)
+    {
+        ui->lineEdit_todaysLosses->setText(todaysGains);
+    }
+    else
+    {
+        ui->lineEdit_TodaysGains->setText(todaysGains);
+    }
+    */
+
+    addToTable();
+
 }

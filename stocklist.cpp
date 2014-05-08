@@ -1,5 +1,5 @@
 #include "stocklist.h"
-
+#include <QTableWidgetItem>
 
 StockList::StockList()
 {
@@ -44,6 +44,7 @@ void StockList::addStock(const Stock& newStock)
         ++i;
     }
 }
+
 //sets totalSpent
 void StockList::setTotalSpent()
 {

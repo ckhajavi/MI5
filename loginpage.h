@@ -17,8 +17,8 @@
 #include <dummyfordownload.h>
 #include <fstream>
 #include "stock.h"
-//#include "user.h"
 #include "stock.h"
+#include <QTableWidget>
 class User;
 
 using namespace std;
@@ -37,6 +37,8 @@ public:
 
     void logOut();
     //logOut
+
+    void addToTable();
 
     ~LoginPage();
 
@@ -58,10 +60,11 @@ private slots:
     void on_btnMakeTrade_clicked();
 
 private:
-    Ui::LoginPage *ui;
+  //  Ui::LoginPage *ui;
     StockSearch *stockSearchWindow;
     DummyForDownload *dummyWindow;
     User* currentUser;
+    Ui::LoginPage *ui;
 };
 
 #endif // LOGINPAGE_H
