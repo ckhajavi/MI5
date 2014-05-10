@@ -28,6 +28,8 @@ void StockSearch::on_btnClose_clicked()
     this->close();
 }
 
+//void StockSearch::parseStockString(const QString& stockString);
+
 //Parses YahooFinance Data.
 void StockSearch::parseData()
 {

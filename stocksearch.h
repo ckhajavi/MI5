@@ -25,14 +25,16 @@ public:
 
     StockSearch(QUrl&);
 
+    void parseData();
+
+    //void parseStockString(const QString& stockString);
+
     ~StockSearch();
 
 private slots:
     void on_btnAddFavorites_clicked();
 
     void on_btnClose_clicked();
-
-    void parseData();
 
     void on_btnFind_clicked();
 
