@@ -202,3 +202,11 @@ void LoginPage::on_btnRemoveStock_clicked()
     int rowToRemove = ui->tableWidget->currentRow();
     ui->tableWidget->removeRow(rowToRemove);
 }
+
+void LoginPage::on_btnSellShares_clicked()
+{
+    int stockToSell;
+    //stockTosell = ui->tableWidget->row()
+    //int stockToSell = ui->tableWidget->row((ui->lineEditSearchSymbol->text));
+    qDebug() << stockToSell;
+}

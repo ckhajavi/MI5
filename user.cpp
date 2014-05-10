@@ -4,7 +4,7 @@
 User::User()
 //: age(""), birthMonth(""), birthYear(""), birthDay(""), gender(MALE)
 {
-
+    userFunds = 10000;
 }
 
 bool User::setDirectory(){
@@ -261,6 +261,11 @@ void User::setGender(const enumGender& newGender)
     gender = newGender;
 }
 
+double User::setUserFunds(int& newUserFunds)
+{
+    userFunds = newUserFunds;
+}
+
 //get methods
 QString User::getUserName() const
 {
@@ -370,4 +375,9 @@ enumGender User::getGender() const
 QString User::getPassword() const
 {
     return plainTextPassword;
+}
+
+double User::getUserFunds() const
+{
+    return userFunds;
 }

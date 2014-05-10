@@ -63,6 +63,8 @@ private slots:
 
     void on_btnRemoveStock_clicked();
 
+    void on_btnSellShares_clicked();
+
 private:
   //  Ui::LoginPage *ui;
     StockSearch *stockSearchWindow;
