@@ -55,9 +55,11 @@ Stock operator+(const Stock& leftSide, const Stock& rightSide)
     temp.ticker = rightSide.ticker;
     temp.owned = true;
     temp.numOfShares = rightSide.numOfShares + leftSide.numOfShares;
+    temp.latestPrice = rightSide.latestPrice;
     temp.changeInPrice = rightSide.changeInPrice;
     temp.todaysHigh = rightSide.todaysHigh;
     temp.todaysLow = rightSide.todaysLow;
+    temp.openPrice = rightSide.openPrice;
     temp.volume = rightSide.volume;
     temp.cost = rightSide.cost + leftSide.cost;
 
