@@ -54,6 +54,7 @@ public:
     void setSecurityAnswer1(const QString&);
     void setSecurityAnswer2(const QString&);
     void setGender(const enumGender&);
+    double setUserFunds(int&);
 
     //get methods
     QString getUserName() const;
@@ -82,6 +83,7 @@ public:
     QString getPassword() const;
     enumGender getGender() const;
     double totalCostOfStocks(const StockList&);
+    double getUserFunds() const;
 
 private:
     QString userName;
@@ -107,6 +109,7 @@ private:
     QMap<QString, QString> userMap;
     QStringList userArray;
     QString fileName;
+    double userFunds;
 };
 
 #endif // USER_H
