@@ -28,20 +28,38 @@ void User::setFileName()
     fileName = directory.homePath();
     fileName.append("/VDMS_USER");
     QDir directoryTemp(fileName);
-    if (!directoryTemp.exists())
+    QString fileNameTemp = fileName;     //temporary string to store fileName
+    fileNameTemp.append("/");
+    fileNameTemp.append(email);
+    QDir directory2(fileNameTemp);
+    //directory.setPath(fileNameTemp);
+    if (!directoryTemp.exists())        //if there is no VDMS file folder
     {
-        directory.mkdir(fileName);
-        fileName.append("/");
-        fileName.append(email);            // name of file is user email
-        fileName.append(".txt");
+        directoryTemp.mkdir(fileName);
+             //Make VDMS file folder
+       //fileName.append("/");
+       //fileName.append(email);            // name of user subfolder is userInfo
+        //fileName.append(".txt");
+       //directory.setPath(fileNameTemp);
+       directory2.mkdir(fileNameTemp);
+       fileName = fileNameTemp;
+       fileName.append("/userInfo.txt");
+       //make a folder named after user's email
+        //fileName.append("/userInfo.txt");   //set the member variable "fileName" to /.../VDMS_USER/userEmail/userInfo.txt
+    }
+    else if(directoryTemp.exists() && !directory2.exists() ) // if the main application folder exists but user folder does not
+    {
+        directory2.mkdir(fileNameTemp);
+        fileName = fileNameTemp;
+        fileName.append("/userInfo.txt"); //make user email name of user folder
     }
     else
-    {                                  //file name is the name of the file where user info is saved, set it to user's home directory
-        fileName.append("/");              // added / to the name
-        fileName.append(email);            // name of file is user email
-        fileName.append(".txt");
-        qDebug() << fileName;
-    }//just debugging
+    {
+        fileName = fileNameTemp;
+        fileName.append("/userInfo.txt");
+    }
+
+    qDebug() << fileName;
     
 }
 
@@ -112,13 +130,6 @@ bool User::loadUser()
 
 void User::saveUser()
 {
-
-/***************ADD YOUR OWN PATH ********************/
-    /*QDir directory;
-    fileName = directory.homePath();
-    fileName.append("/");
-    fileName.append(fName);
-    fileName.append(".txt");*/
         qDebug() << fileName;
         QFile file(fileName);
         file.open(QIODevice::WriteOnly | QIODevice::Text);

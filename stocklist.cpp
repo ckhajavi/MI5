@@ -6,13 +6,18 @@ StockList::StockList()
     stockMap = new QMap<QString, Stock>;
     totalSpent = 0;
     stockTotal = 0;
-    totalSpent = 0; //total spent on stocks with bought for price;
+    totalSpent = 0; //total spent on stocks at time of purchase;
     todaysGains = 0;
     totalGains = 0;
 }
-
-bool StockList::saveStockList()
+bool StockList::setDirectory()
 {
+
+}
+
+bool StockList::saveStockList() //write stocks to a text file
+{
+
 
 }
 
