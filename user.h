@@ -33,6 +33,7 @@ public:
     bool loadUser();
     void saveUser();
     bool saveStockList();
+    bool loadStockList();
     QString getFileName() const;
     //set functions
     void setUserName(const QString&);

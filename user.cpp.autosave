@@ -77,7 +77,7 @@ bool User::saveStockList()
     QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
     while (i != userStockList.stockMap->constEnd()) {
         out <<"ticker : "<< i.value().getTicker() << "," <<"changInPrice : "<< i.value().getChangeInPrice() << ",";
-        out << "cost : " << i.value().getCost() << "," <<"date : " << i.value().getDate() << "," << "latestPrice : " << i.value().getLatestPrice();
+        out << "cost : " << i.value().getCost() << "," <<"date : " << i.value().getDate() << "," << "latestPrice : " << i.value().getLatestPrice() <<",";
         out <<"openPrice : " << i.value().getOpenPrice() <<"," <<"numOfShares : " << i.value().getShares() <<"," << "time : " << i.value().getTime() << ",";
         out <<"todaysHigh : "<< i.value().getTodaysHigh() <<"," <<"todaysLow : "<< i.value().getTodaysLow() <<",";
         out <<"volume : " << i.value().getVolume() << endl;
