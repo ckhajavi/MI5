@@ -40,6 +40,7 @@ void MainWindow::on_btnLogIn_clicked()
     currentUser->setFileName(ui->lineEditUserName->text());  //sets the path to where the user info is saved
     currentUser->loadUser();
     currentUser->setStockFile();    // loads user info from text file and populates the objects variables with values
+    currentUser->loadStockList();
     QString password = currentUser->getPassword();           // create a variable password and set it equal to user's password
     //check to see if password matches
     if( !currentUser->loadUser())

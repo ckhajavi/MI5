@@ -29,6 +29,7 @@ public:
     void setTodaysHigh(double);
     void setTodaysLow(double);
     void setVolume(double);
+    void setCost(double);
 
     //get functions
     bool isOwned() const;

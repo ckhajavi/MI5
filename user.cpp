@@ -73,14 +73,19 @@ bool User::saveStockList()
     QFile file(stockFile);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&file);
-    out << "Hello";
     QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
     while (i != userStockList.stockMap->constEnd()) {
-        out <<"ticker : "<< i.value().getTicker() << "," <<"changInPrice : "<< i.value().getChangeInPrice() << ",";
-        out << "cost : " << i.value().getCost() << "," <<"date : " << i.value().getDate() << "," << "latestPrice : " << i.value().getLatestPrice();
+       /* out <<"ticker : "<< i.value().getTicker() << "," <<"changInPrice : "<< i.value().getChangeInPrice() << ",";
+        out << "cost : " << i.value().getCost() << "," <<"date : " << i.value().getDate() << "," << "latestPrice : " << i.value().getLatestPrice() <<",";
         out <<"openPrice : " << i.value().getOpenPrice() <<"," <<"numOfShares : " << i.value().getShares() <<"," << "time : " << i.value().getTime() << ",";
         out <<"todaysHigh : "<< i.value().getTodaysHigh() <<"," <<"todaysLow : "<< i.value().getTodaysLow() <<",";
         out <<"volume : " << i.value().getVolume() << endl;
+        ++i;*/
+        out << i.value().getTicker() << "," << i.value().getChangeInPrice() << ",";
+        out << i.value().getCost() << "," << i.value().getDate() << "," << i.value().getLatestPrice() <<",";
+        out << i.value().getOpenPrice() <<"," << i.value().getShares() <<"," << i.value().getTime() << ",";
+        out << i.value().getTodaysHigh() <<","<< i.value().getTodaysLow() <<",";
+        out << i.value().getVolume() << endl;
         ++i;
     }
     file.close();
@@ -88,7 +93,7 @@ bool User::saveStockList()
 }
 bool User::loadStockList()
 {
-    QFile file(fileName);
+    QFile file(stockFile);
     if (!file.exists())
     {
        //wrongFile = new wrongFileDialog();
@@ -103,16 +108,33 @@ bool User::loadStockList()
         QTextStream in(&file);                                    //starting a stream reading from the file we set in setFileName function
         QString line;
         QStringList temp;
+        Stock stockTemp;
         while(!in.atEnd())
         {
             line = in.readLine();                               //reading each line of text file, goes until a return is found
-            temp = line.split(",");                           //split each line into a list of Qstrings
-            userMap.insert(temp.value(0), temp.value(1));       //insert each item in Qstring list into our Map of user info
-            temp.value(0) = "";                                 //reset the Qstring to have nothing in
-            temp.value(1) = "";
+            temp = line.split(",");    //split each line into a list of Qstrings
+            stockTemp.setTicker(temp.value(0));
+            stockTemp.setChangeInPrice(temp.value(1).toDouble());
+            stockTemp.setCost(temp.value(2).toDouble());
+            stockTemp.setDate(temp.value(3));
+            stockTemp.setLatestPrice(temp.value(4).toDouble());
+            stockTemp.setNumOfShares(temp.value(5).toInt());
+            stockTemp.setOpenPrice(temp.value(6).toDouble());
+            stockTemp.setTime(temp.value(7));
+            stockTemp.setTodaysHigh(temp.value(8).toDouble());
+            stockTemp.setTodaysLow(temp.value(9).toDouble());
+            userStockList.stockMap->insert(temp.value(0), stockTemp); //insert each item in Qstring list into our Map of user info
+
         }
         file.close();
+        QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
+        while (i != userStockList.stockMap->constEnd()) {
+            qDebug() << i.value().getTicker() << ": " << i.value().getLatestPrice() <<endl;
+                        ++i;
+        }
+        return true;
     }
+
 
 }
 

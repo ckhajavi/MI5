@@ -31,10 +31,10 @@ void StockList::addStock(const Stock& newStock)
     setTodaysGains();
     setTotalGains();
     QMap<QString, Stock>::const_iterator i = stockMap->constBegin(); //using an iterator to iterate through the Map
-    while (i != stockMap->constEnd()) {
+    /*while (i != stockMap->constEnd()) {
         qDebug() << i.key() << " : " << i.value().getCost() << endl;
         ++i;
-    }
+    }*/
 }
 
 //sets totalSpent

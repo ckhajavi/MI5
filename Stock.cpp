@@ -167,6 +167,49 @@ double Stock::getVolume()const
 {
     return volume;
 }
+void Stock::setTicker(const QString& newTicker)
+{
+    ticker = newTicker;
+}
 
-
+void Stock::setCost(double newCost)
+{
+    cost = newCost;
+}
+void Stock::setChangeInPrice(double newChangePrice)
+{
+    changeInPrice = newChangePrice;
+}
+void Stock::setDate(const QString & newDate)
+{
+    date = newDate;
+}
+void Stock::setLatestPrice(double newLatestPrice)
+{
+    latestPrice = newLatestPrice;
+}
+void Stock::setNumOfShares(int newShares)
+{
+    numOfShares = newShares;
+}
+void Stock::setOpenPrice(double newOpenPrice)
+{
+    openPrice = newOpenPrice;
+}
+void Stock::setTime(const QString& newTime)
+{
+    time = newTime;
+}
+void Stock::setTodaysHigh(double newHigh)
+{
+    todaysHigh = newHigh;
+}
+void Stock::setTodaysLow(double newLow)
+{
+    todaysLow = newLow;
+}
+void Stock::setVolume(double newVolume)
+{
+    volume = newVolume;
+}
 
