@@ -26,11 +26,14 @@ public:
     User();
     StockList userStockList;
 
+    void setStockFile();
     void setFileName();
     void setFileName(const QString&);
     bool setDirectory();
     bool loadUser();
     void saveUser();
+    bool saveStockList();
+    QString getFileName() const;
     //set functions
     void setUserName(const QString&);
     void setPassword(const QString&);
@@ -110,6 +113,7 @@ private:
     QStringList userArray;
     QString fileName;
     double userFunds;
+    QString stockFile;
 };
 
 #endif // USER_H

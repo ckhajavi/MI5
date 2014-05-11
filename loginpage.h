@@ -17,7 +17,6 @@
 #include <dummyfordownload.h>
 #include <fstream>
 #include "stock.h"
-#include "stock.h"
 #include <QTableWidget>
 class User;
 

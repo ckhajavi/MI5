@@ -1,6 +1,7 @@
 #include "stocklist.h"
 #include <QTableWidgetItem>
 
+
 StockList::StockList()
 {
     stockMap = new QMap<QString, Stock>;
@@ -11,10 +12,6 @@ StockList::StockList()
     totalGains = 0;
 }
 
-bool StockList::saveStockList()
-{
-
-}
 
 bool StockList::loadStockList()
 {

@@ -12,7 +12,8 @@ LoginPage::LoginPage(QWidget *parent) :
 }
 void LoginPage::setCurrentUser(User* theUser)
 {
-   //currentUser->setEmail(theUser->getEmail());
+    currentUser->setEmail(theUser->getEmail());
+    //currentUser->setFileName(theUser->getFileName());
     //qDebug() << currentUser->getEmail() <<endl;
     currentUser = theUser;
     QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
@@ -24,6 +25,7 @@ void LoginPage::setCurrentUser(User* theUser)
     {
         ui->lineEdit_TodaysGains->setText(todaysGains);
     }
+    qDebug() << "got to current USer"<<endl;
 }
 
 
@@ -47,6 +49,7 @@ void LoginPage::addToTable()
         i++;
         rowNumber++;
     }
+    qDebug() << currentUser->getEmail()<<endl;
 }
 
 void LoginPage::logOut()
@@ -184,6 +187,8 @@ void LoginPage::on_btnBuyShares_clicked()
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable();
+    currentUser->setStockFile();
+    currentUser->saveStockList();
 
 }
 

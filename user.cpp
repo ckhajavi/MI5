@@ -57,6 +57,35 @@ void User::setFileName(const QString& currentEmail)
     fileName.append(".txt");
     qDebug() << fileName;
 }
+void User::setStockFile()
+{
+    QDir directory;
+    stockFile = directory.homePath();
+    stockFile.append("/VDMS_USER/");
+    stockFile.append(email + "_stockInfo.txt");
+    //stockFile.append("_stockInfo.txt");
+    qDebug() << stockFile <<endl;
+}
+
+bool User::saveStockList()
+{
+    qDebug() << stockFile;
+    QFile file(stockFile);
+    file.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&file);
+    out << "Hello";
+    QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
+    while (i != userStockList.stockMap->constEnd()) {
+        out << i.value().getTicker() << "," << i.value().getChangeInPrice() << ",";
+        out << i.value().getCost() << "," << i.value().getDate() << "," << i.value().getLatestPrice();
+        out << i.value().getOpenPrice() <<"," << i.value().getShares() <<"," <<i.value().getTime() << ",";
+        out << i.value().getTodaysHigh() <<"," << i.value().getTodaysHigh() << "'" << i.value().getTodaysLow();
+        out << i.value().getVolume() << endl;
+        ++i;
+    }
+    file.close();
+    return true;
+}
 
 bool User::loadUser()
 {
@@ -130,6 +159,11 @@ void User::saveUser()
         }
         file.close();
 
+}
+
+QString User::getFileName() const
+{
+    return fileName;
 }
 
 void User::setUserName(const QString& newUserName )

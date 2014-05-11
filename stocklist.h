@@ -5,6 +5,8 @@
 #include "loginpage.h"
 #include <QString>
 #include <QTableWidget>
+#include <QFile>
+#include <QTextStream>
 
 
 
@@ -16,7 +18,6 @@ public:
     StockList();
     QMap<QString, Stock> *stockMap;
     ~StockList();
-    bool saveStockList();
     bool loadStockList();
 
     void addStock(const Stock&);
@@ -40,6 +41,7 @@ private:
     double stockTotal;
     double todaysGains;
     double totalGains;
+    QString stockFile;
 };
 
 #endif // STOCKLIST_H
