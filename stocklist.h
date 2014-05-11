@@ -18,7 +18,6 @@ public:
     StockList();
     QMap<QString, Stock> *stockMap;
     ~StockList();
-    bool loadStockList();
 
     void addStock(const Stock&);
     void deleteStock();

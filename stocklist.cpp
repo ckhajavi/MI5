@@ -13,11 +13,6 @@ StockList::StockList()
 }
 
 
-bool StockList::loadStockList()
-{
-
-}
-
 void StockList::addStock(const Stock& newStock)
 {
     if (stockMap->contains(newStock.getTicker()) && newStock.isOwned()) //if stock is already owned
