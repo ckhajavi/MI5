@@ -189,13 +189,63 @@ void LoginPage::on_btnBuyShares_clicked()
 
 void LoginPage::on_btnRefresh_clicked()
 {
+    /*
     int numOfRows = ui->tableWidget->rowCount();
     for (int i = numOfRows; i > 0; i--)
     {
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable();
+    */
+
+    QString stockSymbol;
+    int lengthOfString;
+
+    //Grabs the stock symbols of each stock and downloads current data.
+    QMap<QString, Stock>::const_iterator i = currentUser->userStockList.stockMap->constBegin(); //using an iterator to iterate through the Map
+    while (i != currentUser->userStockList.stockMap->constEnd())
+    {
+
+        stockSymbol += i.value().getTicker() + ",";
+        i++;
+    }
+
+    lengthOfString = stockSymbol.length();
+    stockSymbol.truncate(lengthOfString - 1);
+
+    QString baseURL = "http://download.finance.yahoo.com/d/quotes.txt?s=";
+    QString urlFormatting = "&f=sl1d1t1c1ohgv&e=.txt";
+
+    QUrl thisURL = (QUrl) (baseURL + stockSymbol + urlFormatting);
+    DownloadManager manager;
+    manager.doDownload(thisURL);
+
+    //This dummy window has to open in order to download Data from YahooFinance...Click EXIT once immediately.
+    dummyWindow = new DummyForDownload(this);
+    dummyWindow->exec();
+    dummyWindow->close();
 }
+
+    //********************************************************** Need to parse textfile now.
+/*
+    QFile file("stockInfo.txt");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);         //opening file
+    QTextStream in(&file);                                    //starting a stream reading from the file we set in setFileName function
+    QString line;
+    QStringList temp;
+    while(!in.atEnd())
+    {
+        line = in.readLine();
+        line = line.remove(QRegExp("\""));//reading each line of text file, goes until a return is found
+        temp = line.split(",");
+
+    }
+    for(int i = 0; i < temp.size(); ++i)
+    {
+        qDebug() << temp.value(i) << endl;
+    }
+}
+*/
 
 void LoginPage::on_btnRemoveStock_clicked()
 {

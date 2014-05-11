@@ -27,8 +27,6 @@ public:
 
     void parseData();
 
-    //void parseStockString(const QString& stockString);
-
     ~StockSearch();
 
 private slots:
