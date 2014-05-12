@@ -81,9 +81,12 @@ void LoginPage::on_btnLogOut2_clicked()
 void LoginPage::on_btnSearch_clicked()
 {
     stockSearchWindow = new StockSearch(this);
-   // StockSearch::setCurrentUser(currentUser);
+    stockSearchWindow->setCurrentUserSearch(currentUser);
+
+   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(on_btnRefresh_clicked()));
     //forgotPasswordWindow->show();
-    stockSearchWindow->exec();
+     stockSearchWindow->exec();
+
 }
 
 void LoginPage::on_btnLogOut3_clicked()

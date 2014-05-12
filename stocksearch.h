@@ -24,9 +24,12 @@ public:
     void setCurrentUser(User*);
 
     StockSearch(QUrl&);
-
+    void setCurrentUserSearch(User* theUser);
+     Ui::StockSearch *ui;
 
     ~StockSearch();
+signals:
+    void valueChanged(int);
 
 private slots:
     void on_btnAddFavorites_clicked();
@@ -38,7 +41,7 @@ private slots:
     void on_btnFind_clicked();
 
 private:
-    Ui::StockSearch *ui;
+
     DummyForDownload *dummyWindow;
     User *currentUser;
 
