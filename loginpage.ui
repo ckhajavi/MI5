@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -57,7 +57,7 @@
         <rect>
          <x>430</x>
          <y>30</y>
-         <width>126</width>
+         <width>179</width>
          <height>161</height>
         </rect>
        </property>
@@ -221,7 +221,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_4">
+         <widget class="QLineEdit" name="lineEdit_TotalInvestments">
           <property name="text">
            <string>0</string>
           </property>
@@ -253,7 +253,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_5">
+         <widget class="QLineEdit" name="lineEdit_TotalCash">
           <property name="text">
            <string>0</string>
           </property>
@@ -285,7 +285,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_3">
+         <widget class="QLineEdit" name="lineEdit_TotalValue">
           <property name="text">
            <string>0</string>
           </property>
@@ -435,8 +435,8 @@
         <rect>
          <x>10</x>
          <y>120</y>
-         <width>121</width>
-         <height>85</height>
+         <width>128</width>
+         <height>109</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -572,7 +572,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_9">
+         <widget class="QLineEdit" name="lineEdit_TodaysTrades">
           <property name="text">
            <string>0</string>
           </property>
@@ -611,9 +611,9 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit_TotalValue</tabstop>
+  <tabstop>lineEdit_TotalCash</tabstop>
+  <tabstop>lineEdit_TotalInvestments</tabstop>
   <tabstop>lineEditSearchSymbol</tabstop>
   <tabstop>lineEditQuantity</tabstop>
   <tabstop>btnCalculate</tabstop>
@@ -622,7 +622,7 @@
   <tabstop>btnBuyShares</tabstop>
   <tabstop>lineEdit_TodaysGains</tabstop>
   <tabstop>lineEdit_todaysLosses</tabstop>
-  <tabstop>lineEdit_9</tabstop>
+  <tabstop>lineEdit_TodaysTrades</tabstop>
  </tabstops>
  <resources/>
  <connections/>

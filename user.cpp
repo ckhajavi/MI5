@@ -75,12 +75,6 @@ bool User::saveStockList()
     QTextStream out(&file);
     QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
     while (i != userStockList.stockMap->constEnd()) {
-       /* out <<"ticker : "<< i.value().getTicker() << "," <<"changInPrice : "<< i.value().getChangeInPrice() << ",";
-        out << "cost : " << i.value().getCost() << "," <<"date : " << i.value().getDate() << "," << "latestPrice : " << i.value().getLatestPrice() <<",";
-        out <<"openPrice : " << i.value().getOpenPrice() <<"," <<"numOfShares : " << i.value().getShares() <<"," << "time : " << i.value().getTime() << ",";
-        out <<"todaysHigh : "<< i.value().getTodaysHigh() <<"," <<"todaysLow : "<< i.value().getTodaysLow() <<",";
-        out <<"volume : " << i.value().getVolume() << endl;
-        ++i;*/
         out << i.value().getTicker() << "," << i.value().getChangeInPrice() << ",";
         out << i.value().getCost() << "," << i.value().getDate() << "," << i.value().getLatestPrice() <<",";
         out << i.value().getOpenPrice() <<"," << i.value().getShares() <<"," << i.value().getTime() << ",";
@@ -118,13 +112,12 @@ bool User::loadStockList()
             stockTemp.setCost(temp.value(2).toDouble());
             stockTemp.setDate(temp.value(3));
             stockTemp.setLatestPrice(temp.value(4).toDouble());
-            stockTemp.setNumOfShares(temp.value(5).toInt());
-            stockTemp.setOpenPrice(temp.value(6).toDouble());
+            stockTemp.setNumOfShares(temp.value(6).toInt());
+            stockTemp.setOpenPrice(temp.value(5).toDouble());
             stockTemp.setTime(temp.value(7));
             stockTemp.setTodaysHigh(temp.value(8).toDouble());
             stockTemp.setTodaysLow(temp.value(9).toDouble());
             userStockList.stockMap->insert(temp.value(0), stockTemp); //insert each item in Qstring list into our Map of user info
-
         }
         file.close();
         QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
@@ -134,8 +127,6 @@ bool User::loadStockList()
         }
         return true;
     }
-
-
 }
 
 bool User::loadUser()
@@ -192,24 +183,17 @@ bool User::loadUser()
 
 void User::saveUser()
 {
-
-/***************ADD YOUR OWN PATH ********************/
-    /*QDir directory;
-    fileName = directory.homePath();
-    fileName.append("/");
-    fileName.append(fName);
-    fileName.append(".txt");*/
         qDebug() << fileName;
         QFile file(fileName);
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         QMap<QString, QString>::const_iterator i = userMap.constBegin();
-        while (i != userMap.constEnd()) {
+        while (i != userMap.constEnd())
+        {
             out << i.key() << " : " << i.value() << endl;
             ++i;
         }
         file.close();
-
 }
 
 QString User::getFileName() const
@@ -346,9 +330,17 @@ void User::setGender(const enumGender& newGender)
     gender = newGender;
 }
 
-double User::setUserFunds(int& newUserFunds)
+void User::setUserFunds(double newUserFunds)
 {
     userFunds = newUserFunds;
+    qDebug() << userFunds;
+}
+
+void User::updateUserFunds()
+{
+    userStockList.setTotalSpent(); //updates the total amount spent on stocks
+    setUserFunds(10000 - userStockList.getTotalSpent());
+
 }
 
 //get methods

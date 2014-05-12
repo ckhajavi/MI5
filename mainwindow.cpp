@@ -59,13 +59,8 @@ void MainWindow::on_btnLogIn_clicked()
     }
     else
     {
-        // change into a dialogue box when anyone gets the chance
         QMessageBox::information(this, "Login Failed", "Sorry wrong user name/ password combination");
-        qDebug() << "Sorry wrong user name/ password combination" <<endl;
-        qDebug() << password;
     }
-
-
 
 }
 

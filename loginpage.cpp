@@ -13,9 +13,8 @@ LoginPage::LoginPage(QWidget *parent) :
 void LoginPage::setCurrentUser(User* theUser)
 {
     currentUser->setEmail(theUser->getEmail());
-    //currentUser->setFileName(theUser->getFileName());
-    //qDebug() << currentUser->getEmail() <<endl;
-    currentUser = theUser;
+    currentUser = theUser;  //set adresses equal to each other
+    currentUser->userStockList.setTodaysGains();    //set todays gains
     QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
     if(currentUser->userStockList.getTodaysGains() < 0)
     {
@@ -25,7 +24,13 @@ void LoginPage::setCurrentUser(User* theUser)
     {
         ui->lineEdit_TodaysGains->setText(todaysGains);
     }
-    qDebug() << "got to current USer"<<endl;
+    currentUser->userStockList.setStockTotal();            //set the total value of stock investments
+    QString stockTotalString = QString::number(currentUser->userStockList.getStockTotal()); //convert to string
+    ui->lineEdit_TotalInvestments->setText(stockTotalString);       //write it to the Account summary ui
+    currentUser->updateUserFunds();   //updates the amount of cash the user has available
+    QString userCash = QString::number(currentUser->getUserFunds());
+    ui->lineEdit_TotalCash->setText(userCash);
+
 }
 
 
@@ -49,7 +54,6 @@ void LoginPage::addToTable()
         i++;
         rowNumber++;
     }
-    qDebug() << currentUser->getEmail()<<endl;
 }
 
 void LoginPage::logOut()
@@ -60,8 +64,8 @@ void LoginPage::logOut()
 
 LoginPage::~LoginPage()
 {
-    delete ui;
     delete currentUser;
+    delete ui;
 }
 
 void LoginPage::on_btnLogOut1_clicked()
@@ -167,28 +171,18 @@ void LoginPage::on_btnBuyShares_clicked()
     Stock currentStock(ui->lineEditSearchSymbol->text());
     currentStock.buy(ui->lineEditQuantity->text().toInt());
     currentUser->userStockList.addStock(currentStock);
-    //update account info on screen: total gains etc
-  //  QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
-
-    /*
-    if(currentUser->userStockList.getTodaysGains() < 0)
-    {
-        ui->lineEdit_todaysLosses->setText(todaysGains);
-    }
-    else
-    {
-        ui->lineEdit_TodaysGains->setText(todaysGains);
-    }
-    */
 
     int numOfRows = ui->tableWidget->rowCount();
     for (int i = numOfRows; i > 0; i--)
     {
         ui->tableWidget->removeRow(i - 1);
     }
-    addToTable();
-    currentUser->setStockFile();
-    currentUser->saveStockList();
+    addToTable(); //adds stock to ui table
+    currentUser->setStockFile();      //sets the path where to store the stock
+    currentUser->saveStockList();     //save the stocks
+    QString stockTotalString = QString::number(currentUser->userStockList.getStockTotal());//updates the total value of investments
+    ui->lineEdit_TotalInvestments->setText(stockTotalString);
+
 
 }
 
