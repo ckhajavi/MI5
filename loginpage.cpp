@@ -81,6 +81,7 @@ void LoginPage::on_btnLogOut2_clicked()
 void LoginPage::on_btnSearch_clicked()
 {
     stockSearchWindow = new StockSearch(this);
+   // StockSearch::setCurrentUser(currentUser);
     //forgotPasswordWindow->show();
     stockSearchWindow->exec();
 }
@@ -194,6 +195,7 @@ void LoginPage::on_btnRefresh_clicked()
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable();
+    qDebug() << "got here"<<endl;
 }
 
 void LoginPage::on_btnRemoveStock_clicked()

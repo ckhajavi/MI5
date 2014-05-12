@@ -11,7 +11,13 @@ StockSearch::StockSearch(QWidget *parent) :
     ui->setupUi(this);
     //this might have to be a deep copy
     currentUser = new User;
+    //connect(ui->btnAddFavorites, SIGNAL(clicked()), this, SLOT(
 }
+/*void StockSearch::setCurrentUserA(User* theUser)
+{
+    currentUser->setEmail(theUser->getEmail());
+    currentUser = theUser;  //set adresses equal to each other
+}*/
 
 StockSearch::~StockSearch()
 {
@@ -37,6 +43,7 @@ void StockSearch::on_btnAddFavorites_clicked()
         favorite.setNumOfShares(0);             //set the number of shares = 0
         currentUser->userStockList->addStock(favorite); //add stock to the user's map of favorite and owned stocks
     }
+
 }
 
 void StockSearch::on_btnClose_clicked()

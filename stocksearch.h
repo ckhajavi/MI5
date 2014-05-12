@@ -25,6 +25,7 @@ public:
 
     StockSearch(QUrl&);
 
+
     ~StockSearch();
 
 private slots:
