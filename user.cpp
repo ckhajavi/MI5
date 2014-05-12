@@ -117,6 +117,7 @@ bool User::loadStockList()
             stockTemp.setTime(temp.value(7));
             stockTemp.setTodaysHigh(temp.value(8).toDouble());
             stockTemp.setTodaysLow(temp.value(9).toDouble());
+            stockTemp.setVolume(temp.value(10).toDouble());
             userStockList.stockMap->insert(temp.value(0), stockTemp); //insert each item in Qstring list into our Map of user info
         }
         file.close();
