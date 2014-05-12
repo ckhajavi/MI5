@@ -20,7 +20,7 @@ public:
     ~StockList();
 
     void addStock(const Stock&);
-    void deleteStock();
+    void deleteStock(const Stock&);
     //These are like update functions, updates their member variables
     void setTotalSpent(); //calculates how much was originally spent on buying price
     void setStockTotal(); //calculates how much total money is tied in stocks

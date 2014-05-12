@@ -24,7 +24,7 @@ public:
     //default constructor
     //friend class NewUserSetup;
     User();
-    StockList userStockList;
+    StockList *userStockList;
 
     void setStockFile();
     void setFileName();

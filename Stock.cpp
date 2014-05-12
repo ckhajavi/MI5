@@ -108,6 +108,66 @@ void Stock::buy(int shares)
 
 }
 
+void Stock::sell(int shares)
+{
+    if (numOfShares < shares)
+    {
+        qDebug() << "sorry not enough shares" <<endl;
+        //QMessageBox::information(this, "Cannot Complete Transaction", "Sorry you do not own enough shares");
+    }
+    else if(numOfShares == shares)
+    {
+        owned = false;
+        numOfShares = numOfShares - shares;
+    }
+    else
+    {
+        numOfShares = numOfShares - shares;
+    }
+}
+
+void Stock::setAsFavorite()
+{
+    //Parse data from "stockInfo.txt" (data from yahoo Finance)
+    QFile file("stockInfo.txt");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);         //opening file
+    QTextStream in(&file);                                    //starting a stream reading from the file we set in setFileName function
+    QString line;
+    QStringList temp;
+    while(!in.atEnd())
+    {
+        line = in.readLine();
+        line = line.remove(QRegExp("\""));//reading each line of text file, goes until a return is found
+        temp = line.split(",");
+
+    }
+    for(int i = 0; i < temp.size(); ++i)
+    {
+        qDebug() << temp.value(i) << endl;
+    }
+    qDebug() <<temp.size() << endl;
+    qDebug() << temp.value(0) << " " << temp.value(7) << endl;
+
+    if (ticker == "")
+    {
+        ticker = temp.value(0);
+    }
+    latestPrice = temp.value(1).toDouble();
+    date = temp.value(2);
+    time = temp.value(3);
+    changeInPrice = temp.value(4).toDouble();
+    openPrice = temp.value(5).toDouble();
+    todaysHigh = temp.value(6).toDouble();
+    todaysLow = temp.value(7).toDouble();
+    volume = temp.value(8).toDouble();
+
+}
+
+void Stock::setAsOwned(bool isStockOwned)
+{
+    owned = isStockOwned;
+}
+
 bool Stock::isOwned() const
 {
     return owned;

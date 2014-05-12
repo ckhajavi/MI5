@@ -37,6 +37,14 @@ void StockList::addStock(const Stock& newStock)
     }*/
 }
 
+void StockList::deleteStock(const Stock& theStock) //removes the stock from the map containing all the users favorite and owned stocks
+{
+    if(stockMap->contains(theStock.getTicker()))  //only valid if the stock exist in the map
+    {
+        stockMap->take(theStock.getTicker());
+    }
+}
+
 //sets totalSpent
 void StockList::setTotalSpent()
 {

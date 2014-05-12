@@ -13,7 +13,8 @@ public:
     Stock();
     Stock(QString);
     void buy(int);
-    double sell(int);
+    void sell(int);
+    void setAsFavorite();
 
     Stock& operator=(const Stock&);
 

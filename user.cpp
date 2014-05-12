@@ -5,6 +5,7 @@ User::User()
 //: age(""), birthMonth(""), birthYear(""), birthDay(""), gender(MALE)
 {
     userFunds = 10000;
+    userStockList = new StockList;
 }
 
 bool User::setDirectory(){
@@ -73,8 +74,8 @@ bool User::saveStockList()
     QFile file(stockFile);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&file);
-    QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
-    while (i != userStockList.stockMap->constEnd()) {
+    QMap<QString, Stock>::const_iterator i = userStockList->stockMap->constBegin();
+    while (i != userStockList->stockMap->constEnd()) {
         out << i.value().getTicker() << "," << i.value().getChangeInPrice() << ",";
         out << i.value().getCost() << "," << i.value().getDate() << "," << i.value().getLatestPrice() <<",";
         out << i.value().getOpenPrice() <<"," << i.value().getShares() <<"," << i.value().getTime() << ",";
@@ -118,11 +119,11 @@ bool User::loadStockList()
             stockTemp.setTodaysHigh(temp.value(8).toDouble());
             stockTemp.setTodaysLow(temp.value(9).toDouble());
             stockTemp.setVolume(temp.value(10).toDouble());
-            userStockList.stockMap->insert(temp.value(0), stockTemp); //insert each item in Qstring list into our Map of user info
+            userStockList->stockMap->insert(temp.value(0), stockTemp); //insert each item in Qstring list into our Map of user info
         }
         file.close();
-        QMap<QString, Stock>::const_iterator i = userStockList.stockMap->constBegin();
-        while (i != userStockList.stockMap->constEnd()) {
+        QMap<QString, Stock>::const_iterator i = userStockList->stockMap->constBegin();
+        while (i != userStockList->stockMap->constEnd()) {
             qDebug() << i.value().getTicker() << ": " << i.value().getLatestPrice() <<endl;
                         ++i;
         }
@@ -135,10 +136,6 @@ bool User::loadUser()
     QFile file(fileName);
     if (!file.exists())
     {
-       //wrongFile = new wrongFileDialog();
-       //wrongFile -> show();
-       //wrongFile->exec();
-        //qDebug() << "sorry not found" << endl;
         return false;
     }
     else
@@ -339,8 +336,8 @@ void User::setUserFunds(double newUserFunds)
 
 void User::updateUserFunds()
 {
-    userStockList.setTotalSpent(); //updates the total amount spent on stocks
-    setUserFunds(10000 - userStockList.getTotalSpent());
+    userStockList->setTotalSpent(); //updates the total amount spent on stocks
+    setUserFunds(10000 - userStockList->getTotalSpent());
 
 }
 

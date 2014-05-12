@@ -14,9 +14,9 @@ void LoginPage::setCurrentUser(User* theUser)
 {
     currentUser->setEmail(theUser->getEmail());
     currentUser = theUser;  //set adresses equal to each other
-    currentUser->userStockList.setTodaysGains();    //set todays gains
-    QString todaysGains = QString::number(currentUser->userStockList.getTodaysGains());
-    if(currentUser->userStockList.getTodaysGains() < 0)
+    currentUser->userStockList->setTodaysGains();    //set todays gains
+    QString todaysGains = QString::number(currentUser->userStockList->getTodaysGains());
+    if(currentUser->userStockList->getTodaysGains() < 0)
     {
         ui->lineEdit_todaysLosses->setText(todaysGains);
     }
@@ -24,8 +24,8 @@ void LoginPage::setCurrentUser(User* theUser)
     {
         ui->lineEdit_TodaysGains->setText(todaysGains);
     }
-    currentUser->userStockList.setStockTotal();            //set the total value of stock investments
-    QString stockTotalString = QString::number(currentUser->userStockList.getStockTotal()); //convert to string
+    currentUser->userStockList->setStockTotal();            //set the total value of stock investments
+    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal()); //convert to string
     ui->lineEdit_TotalInvestments->setText(stockTotalString);       //write it to the Account summary ui
     currentUser->updateUserFunds();   //updates the amount of cash the user has available
     QString userCash = QString::number(currentUser->getUserFunds());
@@ -37,8 +37,8 @@ void LoginPage::setCurrentUser(User* theUser)
 void LoginPage::addToTable()
 {
     int rowNumber = 0;
-    QMap<QString, Stock>::const_iterator i = currentUser->userStockList.stockMap->constBegin(); //using an iterator to iterate through the Map
-    while (i != currentUser->userStockList.stockMap->constEnd())
+    QMap<QString, Stock>::const_iterator i = currentUser->userStockList->stockMap->constBegin(); //using an iterator to iterate through the Map
+    while (i != currentUser->userStockList->stockMap->constEnd())
     {
         ui->tableWidget->insertRow(rowNumber);
         ui->tableWidget->setItem(rowNumber, 0, new QTableWidgetItem(i.value().getTicker()));
@@ -170,7 +170,7 @@ void LoginPage::on_btnBuyShares_clicked()
 {
     Stock currentStock(ui->lineEditSearchSymbol->text());
     currentStock.buy(ui->lineEditQuantity->text().toInt());
-    currentUser->userStockList.addStock(currentStock);
+    currentUser->userStockList->addStock(currentStock);
 
     int numOfRows = ui->tableWidget->rowCount();
     for (int i = numOfRows; i > 0; i--)
@@ -180,7 +180,7 @@ void LoginPage::on_btnBuyShares_clicked()
     addToTable(); //adds stock to ui table
     currentUser->setStockFile();      //sets the path where to store the stock
     currentUser->saveStockList();     //save the stocks
-    QString stockTotalString = QString::number(currentUser->userStockList.getStockTotal());//updates the total value of investments
+    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal());//updates the total value of investments
     ui->lineEdit_TotalInvestments->setText(stockTotalString);
 
 
