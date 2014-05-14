@@ -16,20 +16,7 @@ void LoginPage::setCurrentUser(User* theUser)
     currentUser = theUser;  //set adresses equal to each other
     currentUser->userStockList->setTodaysGains();    //set todays gains
     QString todaysGains = QString::number(currentUser->userStockList->getTodaysGains());
-    if(currentUser->userStockList->getTodaysGains() < 0)
-    {
-        ui->lineEdit_todaysLosses->setText(todaysGains);
-    }
-    else
-    {
-        ui->lineEdit_TodaysGains->setText(todaysGains);
-    }
-    currentUser->userStockList->setStockTotal();            //set the total value of stock investments
-    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal()); //convert to string
-    ui->lineEdit_TotalInvestments->setText(stockTotalString);       //write it to the Account summary ui
-    QString userCash = QString::number(currentUser->getUserFunds());
-    ui->lineEdit_TotalCash->setText(userCash);
-
+    updateAccountSummary();
 }
 
 
@@ -58,6 +45,7 @@ void LoginPage::addToTable()
 void LoginPage::logOut()
 {
     currentUser->saveStockList();
+    currentUser->saveUser();
     QMessageBox::information(this, "Logging Out", "You have successfully logged out.");
     this->close();
 }
@@ -83,7 +71,7 @@ void LoginPage::on_btnSearch_clicked()
     stockSearchWindow = new StockSearch(this);
     stockSearchWindow->setCurrentUserSearch(currentUser);
 
-   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(addToTable()));//when add to favorites button is pressed
+   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(on_btnRefresh_clicked()));//when add to favorites button is pressed
                                                                                                        //an updated version of the list will appear
                                                                                                        //on the previous window
     //forgotPasswordWindow->show();
@@ -184,12 +172,9 @@ void LoginPage::on_btnBuyShares_clicked()
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable(); //adds stock to ui table
+    updateAccountSummary();
     currentUser->saveStockList();     //save the stocks
-    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal());//updates the total value of investments
-    ui->lineEdit_TotalInvestments->setText(stockTotalString);
-    currentUser->setUserFunds(currentUser->getUserFunds() - currentStock.getCost()); //update the available cash for user.
-     QString cash = QString::number(currentUser->getUserFunds());
-    ui->lineEdit_TotalCash->setText(cash);
+    currentUser->saveUser();  //saves the user info
 
 
 }
@@ -213,8 +198,8 @@ void LoginPage::on_btnRemoveStock_clicked()
 
 void LoginPage::on_btnSellShares_clicked()
 {
-    Stock stockToSell(ui->lineEditSearchSymbol->text());
-    stockToSell.sell(ui->lineEditQuantity->text().toInt());
+    Stock stockToSell(ui->lineEditSearchSymbol->text()); //creates stock object
+    stockToSell.sell(ui->lineEditQuantity->text().toInt()); //sells the stock
     currentUser->userStockList->sellStock(stockToSell); //update map of stocks
     int numOfRows = ui->tableWidget->rowCount();
     for (int i = numOfRows; i > 0; i--)
@@ -223,15 +208,35 @@ void LoginPage::on_btnSellShares_clicked()
     }
     addToTable(); //updates ui table
     currentUser->saveStockList();     //save the stocks
-    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal());//updates the total value of investments
-    ui->lineEdit_TotalInvestments->setText(stockTotalString);
-    currentUser->setUserFunds(currentUser->getUserFunds() + stockToSell.getSoldFor()*stockToSell.getShares());
-    QString cash = QString::number(currentUser->getUserFunds());
-    ui->lineEdit_TotalCash->setText(cash);
+    updateAccountSummary();
+
+    currentUser->saveUser();   //saves the user info
 
 
 
 
     //stockTosell = ui->tableWidget->row()
     //int stockToSell = ui->tableWidget->row((ui->lineEditSearchSymbol->text));
+}
+
+void LoginPage::updateAccountSummary()
+{
+    currentUser->userStockList->setTotalGains();    //update total gains
+    QString totalGains = QString::number(currentUser->userStockList->getTotalGains());
+    if(currentUser->userStockList->getTotalGains() < 0)
+    {
+        ui->lineEdit_todaysLosses->setText(totalGains);
+    }
+    else
+    {
+        ui->lineEdit_TodaysGains->setText(totalGains);
+    }
+    currentUser->userStockList->setStockTotal();            //update the total value of stock investments
+    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal()); //convert to string
+    ui->lineEdit_TotalInvestments->setText(stockTotalString);       //write it to the Account summary ui
+    QString userCash = QString::number(currentUser->getUserFunds());  //store available funds as string
+    ui->lineEdit_TotalCash->setText(userCash);                      //set ui as the string declared above
+    double totalNum = currentUser->getUserFunds() + currentUser->userStockList->getStockTotal();
+    QString totalString = QString::number(totalNum);
+    ui->lineEdit_TotalValue->setText(totalString);
 }

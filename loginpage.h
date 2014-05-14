@@ -40,6 +40,8 @@ public:
 
 
     ~LoginPage();
+signals:
+    void valueChanged(int);
 
 private slots:
     void addToTable();
@@ -64,6 +66,8 @@ private slots:
     void on_btnRemoveStock_clicked();
 
     void on_btnSellShares_clicked();
+
+    void updateAccountSummary();
 
 private:
   //  Ui::LoginPage *ui;

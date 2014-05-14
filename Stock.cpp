@@ -48,6 +48,7 @@ Stock& Stock::operator=(const Stock& rightSide )
         volume = rightSide.volume;
         cost = rightSide.cost;
         soldFor = rightSide.soldFor;
+        boughtFor = rightSide.boughtFor;
     }
     return *this;
 }
@@ -65,7 +66,6 @@ Stock operator+(const Stock& leftSide, const Stock& rightSide)
     temp.openPrice = rightSide.openPrice;
     temp.volume = rightSide.volume;
     temp.cost = rightSide.cost + leftSide.cost;
-
     return temp;
 }
 
@@ -81,7 +81,7 @@ Stock operator- (const Stock& leftSide, const Stock& rightSide)
     temp.todaysLow = rightSide.todaysLow;
     temp.openPrice = rightSide.openPrice;
     temp.volume = rightSide.volume;
-    temp.cost = leftSide.boughtFor * (leftSide.numOfShares - rightSide.numOfShares);
+    temp.cost = leftSide.cost - rightSide.cost; //cost of the shares is now the number of shares times the origninal price
     temp.soldFor = 0;
 
     return temp;
@@ -153,7 +153,7 @@ void Stock::sell(int shares)
     todaysLow = temp.value(7).toDouble();
     volume = temp.value(8).toDouble();
     boughtFor = 0;
-    cost = 0;
+    cost = latestPrice  *numOfShares;
 
     soldFor = latestPrice;
 
