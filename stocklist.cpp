@@ -37,6 +37,35 @@ void StockList::addStock(const Stock& newStock)
     }*/
 }
 
+void StockList::sellStock( Stock & theStock)
+{
+    if (stockMap->contains(theStock.getTicker()) ) //if stock is already owned
+    {
+        if (theStock.getShares() > stockMap->value(theStock.getTicker()).getShares())  //if user is trying to sell more than they own
+         {
+            qDebug() << "sorry not enough shares" <<endl;
+            //QMessageBox::information(this, "Cannot Complete Transaction", "Sorry you do not own enough shares");
+         }
+         else if(theStock.getShares() == stockMap->value(theStock.getTicker()).getShares())  //if trying to sell all of the shares of a stock
+        {
+            Stock temp;
+            temp = theStock - stockMap->value(theStock.getTicker());
+            stockMap->insert(temp.getTicker(), temp);
+
+        }
+        else
+        {
+            Stock temp;
+            temp = theStock - stockMap->value(theStock.getTicker());
+            stockMap->insert(temp.getTicker(), temp);
+        }
+    }
+    else
+    {
+        qDebug() << "Cannot sell a stock you do not own" <<endl;
+    }
+}
+
 void StockList::deleteStock(const Stock& theStock) //removes the stock from the map containing all the users favorite and owned stocks
 {
     if(stockMap->contains(theStock.getTicker()))  //only valid if the stock exist in the map

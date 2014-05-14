@@ -9,12 +9,14 @@
 class Stock
 {
     friend Stock operator+(const Stock&, const Stock&);
+    friend Stock operator-(const Stock&, const Stock&);
 public:
     Stock();
     Stock(QString);
     void buy(int);
     void sell(int);
     void setAsFavorite();
+
 
     Stock& operator=(const Stock&);
 
@@ -45,6 +47,7 @@ public:
     double getTodaysLow() const;
     double getVolume()const;
     double getCost() const;
+    double getSoldFor() const;
 
 
 
@@ -60,8 +63,9 @@ private:
     double todaysHigh;
     double todaysLow;
     double volume;
-
-    double cost;  //the price that the user bought it for
+    double cost;  //the price that the user bought it for *numOfSharess
+    double soldFor; //the latest price of share *numOfShares
+    double boughtFor;
 
 
 

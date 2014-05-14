@@ -59,7 +59,7 @@ public:
     void setSecurityAnswer2(const QString&);
     void setGender(const enumGender&);
     void setUserFunds(double);
-    void updateUserFunds();
+
 
     //get methods
     QString getUserName() const;

@@ -37,11 +37,12 @@ public:
     void logOut();
     //logOut
 
-    void addToTable();
+
 
     ~LoginPage();
 
 private slots:
+    void addToTable();
     void on_btnLogOut2_clicked();
 
     void on_btnLogOut1_clicked();

@@ -70,6 +70,7 @@ void User::setStockFile()
 
 bool User::saveStockList()
 {
+    setStockFile();
     qDebug() << stockFile;
     QFile file(stockFile);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -174,6 +175,7 @@ bool User::loadUser()
         email = userMap.value("email");
         securityAnswer1 = userMap.value("securityAnswer1");
         securityAnswer2 = userMap.value("securityAnswer2");
+        userFunds = userMap.value("userFunds").toDouble();
         return true;
     }
 
@@ -331,20 +333,14 @@ void User::setGender(const enumGender& newGender)
 void User::setUserFunds(double newUserFunds)
 {
     userFunds = newUserFunds;
+    QString userCash = QString::number(userFunds);
+    userMap.insert("userFunds", userCash);
     qDebug() << userFunds;
-}
-
-void User::updateUserFunds()
-{
-    userStockList->setTotalSpent(); //updates the total amount spent on stocks
-    setUserFunds(10000 - userStockList->getTotalSpent());
-
 }
 
 //get methods
 QString User::getUserName() const
 {
-
     return userName;
 }
 QString User::getFName() const
@@ -456,3 +452,4 @@ double User::getUserFunds() const
 {
     return userFunds;
 }
+

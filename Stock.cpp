@@ -14,6 +14,7 @@ Stock::Stock()
     todaysLow = 0;
     volume = 0;
     cost = 0;
+    soldFor = 0;
 }
 
 //Overloaded
@@ -29,6 +30,7 @@ Stock::Stock(QString newTicker)
     todaysLow = 0;
     volume = 0;
     cost = 0;
+    soldFor = 0;
 }
 
 Stock& Stock::operator=(const Stock& rightSide )
@@ -45,6 +47,7 @@ Stock& Stock::operator=(const Stock& rightSide )
         todaysLow = rightSide.todaysLow;
         volume = rightSide.volume;
         cost = rightSide.cost;
+        soldFor = rightSide.soldFor;
     }
     return *this;
 }
@@ -62,6 +65,24 @@ Stock operator+(const Stock& leftSide, const Stock& rightSide)
     temp.openPrice = rightSide.openPrice;
     temp.volume = rightSide.volume;
     temp.cost = rightSide.cost + leftSide.cost;
+
+    return temp;
+}
+
+Stock operator- (const Stock& leftSide, const Stock& rightSide)
+{
+    Stock temp;
+    temp.ticker = rightSide.ticker;
+    temp.owned = true;
+    temp.numOfShares = rightSide.numOfShares - leftSide.numOfShares;
+    temp.latestPrice = rightSide.latestPrice;
+    temp.changeInPrice = rightSide.changeInPrice;
+    temp.todaysHigh = rightSide.todaysHigh;
+    temp.todaysLow = rightSide.todaysLow;
+    temp.openPrice = rightSide.openPrice;
+    temp.volume = rightSide.volume;
+    temp.cost = leftSide.boughtFor * (leftSide.numOfShares - rightSide.numOfShares);
+    temp.soldFor = 0;
 
     return temp;
 }
@@ -84,12 +105,40 @@ void Stock::buy(int shares)
         temp = line.split(",");
 
     }
-    for(int i = 0; i < temp.size(); ++i)
+    file.close();
+    if (ticker == "")
     {
-        qDebug() << temp.value(i) << endl;
+        ticker = temp.value(0);
     }
-    qDebug() <<temp.size() << endl;
-    qDebug() << temp.value(0) << " " << temp.value(7) << endl;
+    latestPrice = temp.value(1).toDouble();
+    date = temp.value(2);
+    time = temp.value(3);
+    changeInPrice = temp.value(4).toDouble();
+    openPrice = temp.value(5).toDouble();
+    todaysHigh = temp.value(6).toDouble();
+    todaysLow = temp.value(7).toDouble();
+    volume = temp.value(8).toDouble();
+    soldFor = 0;
+    cost = latestPrice*shares;
+    boughtFor = latestPrice;
+
+}
+
+void Stock::sell(int shares)
+{
+    numOfShares = shares;
+    QFile file("stockInfo.txt");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);         //opening file
+    QTextStream in(&file);                                    //starting a stream reading from the file we set in setFileName function
+    QString line;
+    QStringList temp;
+    while(!in.atEnd())
+    {
+        line = in.readLine();
+        line = line.remove(QRegExp("\""));//reading each line of text file, goes until a return is found
+        temp = line.split(",");
+    }
+    file.close();
 
     if (ticker == "")
     {
@@ -103,27 +152,11 @@ void Stock::buy(int shares)
     todaysHigh = temp.value(6).toDouble();
     todaysLow = temp.value(7).toDouble();
     volume = temp.value(8).toDouble();
+    boughtFor = 0;
+    cost = 0;
 
-    cost = latestPrice*shares;
+    soldFor = latestPrice;
 
-}
-
-void Stock::sell(int shares)
-{
-    if (numOfShares < shares)
-    {
-        qDebug() << "sorry not enough shares" <<endl;
-        //QMessageBox::information(this, "Cannot Complete Transaction", "Sorry you do not own enough shares");
-    }
-    else if(numOfShares == shares)
-    {
-        owned = false;
-        numOfShares = numOfShares - shares;
-    }
-    else
-    {
-        numOfShares = numOfShares - shares;
-    }
 }
 
 void Stock::setAsFavorite()
@@ -160,6 +193,9 @@ void Stock::setAsFavorite()
     todaysHigh = temp.value(6).toDouble();
     todaysLow = temp.value(7).toDouble();
     volume = temp.value(8).toDouble();
+    cost = 0;
+    boughtFor = 0;
+    soldFor = 0;
 
 }
 
@@ -227,6 +263,10 @@ double Stock::getVolume()const
 {
     return volume;
 }
+double Stock::getSoldFor()const
+{
+    return soldFor;
+}
 void Stock::setTicker(const QString& newTicker)
 {
     ticker = newTicker;
@@ -272,4 +312,5 @@ void Stock::setVolume(double newVolume)
 {
     volume = newVolume;
 }
+
 

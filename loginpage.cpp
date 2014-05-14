@@ -27,7 +27,6 @@ void LoginPage::setCurrentUser(User* theUser)
     currentUser->userStockList->setStockTotal();            //set the total value of stock investments
     QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal()); //convert to string
     ui->lineEdit_TotalInvestments->setText(stockTotalString);       //write it to the Account summary ui
-    currentUser->updateUserFunds();   //updates the amount of cash the user has available
     QString userCash = QString::number(currentUser->getUserFunds());
     ui->lineEdit_TotalCash->setText(userCash);
 
@@ -58,6 +57,7 @@ void LoginPage::addToTable()
 
 void LoginPage::logOut()
 {
+    currentUser->saveStockList();
     QMessageBox::information(this, "Logging Out", "You have successfully logged out.");
     this->close();
 }
@@ -83,7 +83,9 @@ void LoginPage::on_btnSearch_clicked()
     stockSearchWindow = new StockSearch(this);
     stockSearchWindow->setCurrentUserSearch(currentUser);
 
-   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(on_btnRefresh_clicked()));
+   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(addToTable()));//when add to favorites button is pressed
+                                                                                                       //an updated version of the list will appear
+                                                                                                       //on the previous window
     //forgotPasswordWindow->show();
      stockSearchWindow->exec();
 
@@ -182,10 +184,12 @@ void LoginPage::on_btnBuyShares_clicked()
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable(); //adds stock to ui table
-    currentUser->setStockFile();      //sets the path where to store the stock
     currentUser->saveStockList();     //save the stocks
     QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal());//updates the total value of investments
     ui->lineEdit_TotalInvestments->setText(stockTotalString);
+    currentUser->setUserFunds(currentUser->getUserFunds() - currentStock.getCost()); //update the available cash for user.
+     QString cash = QString::number(currentUser->getUserFunds());
+    ui->lineEdit_TotalCash->setText(cash);
 
 
 }
@@ -209,8 +213,25 @@ void LoginPage::on_btnRemoveStock_clicked()
 
 void LoginPage::on_btnSellShares_clicked()
 {
-    int stockToSell;
+    Stock stockToSell(ui->lineEditSearchSymbol->text());
+    stockToSell.sell(ui->lineEditQuantity->text().toInt());
+    currentUser->userStockList->sellStock(stockToSell); //update map of stocks
+    int numOfRows = ui->tableWidget->rowCount();
+    for (int i = numOfRows; i > 0; i--)
+    {
+        ui->tableWidget->removeRow(i - 1);
+    }
+    addToTable(); //updates ui table
+    currentUser->saveStockList();     //save the stocks
+    QString stockTotalString = QString::number(currentUser->userStockList->getStockTotal());//updates the total value of investments
+    ui->lineEdit_TotalInvestments->setText(stockTotalString);
+    currentUser->setUserFunds(currentUser->getUserFunds() + stockToSell.getSoldFor()*stockToSell.getShares());
+    QString cash = QString::number(currentUser->getUserFunds());
+    ui->lineEdit_TotalCash->setText(cash);
+
+
+
+
     //stockTosell = ui->tableWidget->row()
     //int stockToSell = ui->tableWidget->row((ui->lineEditSearchSymbol->text));
-    qDebug() << stockToSell;
 }
