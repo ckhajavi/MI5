@@ -24,16 +24,17 @@ public:
     //default constructor
     //friend class NewUserSetup;
     User();
-    StockList *userStockList;
+    StockList *userStockList; //list of stocks
 
-    void setStockFile();
-    void setFileName();
-    void setFileName(const QString&);
-    bool setDirectory();
-    bool loadUser();
-    void saveUser();
-    bool saveStockList();
-    bool loadStockList();
+    void setStockFile(); //sets the path to the where the stock list is held
+    void setFileName(); //sets the path to where the user info is stored
+    void setFileName(const QString&); //overloaded the above function
+    bool setDirectory();    //sets the directory of the userInfo.
+    bool loadUser();      //reads the user info from a text file, puts it into a Map and sets member variables to their corresponding values in the map
+     bool loadStockList(); //reads the stockList from a text file, puts it into a Map and sets member variables to their corresponding values in the map
+    void saveUser();       //reads the user info, in the form of a map to a text file
+    bool saveStockList();  //reads the list of stocks, in the form of a map to a text file
+
     QString getFileName() const;
     //set functions
     void setUserName(const QString&);
@@ -111,11 +112,11 @@ private:
     QString securityQuestion2;
     QString securityAnswer2;
     enumGender gender;
-    QMap<QString, QString> userMap;
-    QStringList userArray;
-    QString fileName;
+    QMap<QString, QString> userMap; //holds the user information in a map, sorted by variable name. variable name is the key
+    QStringList userArray; //holds the user info, until it is written to a the userMap. We aren't using this anymore actually
+    QString fileName; //holds the path to the text file of where we are storing the user's info
+    QString stockFile; //holds the path to the text file of where we are storing the list of stocks
     double userFunds;
-    QString stockFile;
 };
 
 #endif // USER_H

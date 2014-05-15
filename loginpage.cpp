@@ -69,11 +69,12 @@ void LoginPage::on_btnLogOut2_clicked()
 void LoginPage::on_btnSearch_clicked()
 {
     stockSearchWindow = new StockSearch(this);
-    stockSearchWindow->setCurrentUserSearch(currentUser);
+    stockSearchWindow->setCurrentUserSearch(currentUser); //pass the user pointer on to the next window
 
-   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(on_btnRefresh_clicked()));//when add to favorites button is pressed
+//the following connection connects the addto favorites button in the StockSearch class to the refresh button in loginClass
+   QObject::connect(stockSearchWindow, SIGNAL(valueChanged(int)), this, SLOT(on_btnRefresh_clicked()));//when added to favorites button is pressed and signal is released
                                                                                                        //an updated version of the list will appear
-                                                                                                       //on the previous window
+                                                                                                       //on the loginPage
     //forgotPasswordWindow->show();
      stockSearchWindow->exec();
 
@@ -172,6 +173,8 @@ void LoginPage::on_btnBuyShares_clicked()
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable(); //adds stock to ui table
+    double funds = currentUser->getUserFunds();
+    currentUser->setUserFunds(funds - currentStock.getCost());
     updateAccountSummary();
     currentUser->saveStockList();     //save the stocks
     currentUser->saveUser();  //saves the user info
@@ -207,6 +210,8 @@ void LoginPage::on_btnSellShares_clicked()
         ui->tableWidget->removeRow(i - 1);
     }
     addToTable(); //updates ui table
+    double funds = currentUser->getUserFunds();
+    currentUser->setUserFunds(funds + stockToSell.getCost());
     currentUser->saveStockList();     //save the stocks
     updateAccountSummary();
 

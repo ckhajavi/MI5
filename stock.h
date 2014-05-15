@@ -16,8 +16,6 @@ public:
     void buy(int);
     void sell(int);
     void setAsFavorite();
-
-
     Stock& operator=(const Stock&);
 
     //setter functions
@@ -34,6 +32,7 @@ public:
     void setVolume(double);
     void setCost(double);
 
+
     //get functions
     bool isOwned() const;
     QString getTicker() const;
@@ -46,8 +45,9 @@ public:
     double getTodaysHigh() const;
     double getTodaysLow() const;
     double getVolume()const;
-    double getCost() const;
-    double getSoldFor() const;
+    double getCost() const; //returns the cost
+    double getSoldFor() const; //returns soldFor price
+
 
 
 
@@ -64,10 +64,8 @@ private:
     double todaysLow;
     double volume;
     double cost;  //the price that the user bought it for *numOfSharess
-    double soldFor; //the latest price of share *numOfShares
-    double boughtFor;
-
-
+    double soldFor; //the latest price of the shares at time of purchase, this member is used in th
+    double boughtFor; //stores the price that the stock was bought for
 
 
 };
