@@ -7,6 +7,11 @@ User::User()
     userFunds = 10000;
     userStockList = new StockList;
 }
+User::~User()
+{
+    delete userStockList->stockMap;
+    delete userStockList;
+}
 
 bool User::setDirectory(){
 

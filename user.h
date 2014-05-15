@@ -24,6 +24,7 @@ public:
     //default constructor
     //friend class NewUserSetup;
     User();
+    ~User();
     StockList *userStockList; //list of stocks
 
     void setStockFile(); //sets the path to the where the stock list is held

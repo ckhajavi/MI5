@@ -92,7 +92,7 @@ void StockList::setStockTotal()
     double temp = 0;
     QMap<QString, Stock>::const_iterator i = stockMap->constBegin(); //using an iterator to iterate through the Map
     while (i != stockMap->constEnd()) {
-        temp = temp + i.value().getLatestPrice();
+        temp = temp + i.value().getLatestPrice()*i.value().getShares();
         ++i;
     }
     stockTotal = temp;
@@ -123,7 +123,7 @@ void StockList::setTodaysGains()
     double gains;
     QMap<QString, Stock>::const_iterator i = stockMap->constBegin(); //using an iterator to iterate through the Map
     while (i != stockMap->constEnd()) {
-        gains = gains + i.value().getLatestPrice() - i.value().getOpenPrice();
+        gains = gains + (i.value().getLatestPrice() - i.value().getOpenPrice())*i.value().getShares();
         ++i;
     }
     todaysGains = gains;

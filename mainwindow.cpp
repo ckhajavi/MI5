@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    if( currentUser != NULL)
+    {
+        delete currentUser;
+    }
 }
 
 //Creates new user window

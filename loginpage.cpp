@@ -53,6 +53,7 @@ void LoginPage::logOut()
 LoginPage::~LoginPage()
 {
     delete currentUser;
+    currentUser = NULL;
     delete ui;
 }
 
