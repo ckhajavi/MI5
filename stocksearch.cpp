@@ -26,7 +26,7 @@ StockSearch::~StockSearch()
 
 void StockSearch::on_btnAddFavorites_clicked()
 {
-    on_btnFind_clicked();
+    //on_btnFind_clicked();
     //Grabbing stock info from UI and creating a stock object
     Stock favorite(ui->lineEditSearch->text());
     favorite.setChangeInPrice(ui->txtChange->text().toDouble());

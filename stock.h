@@ -4,6 +4,7 @@
 
 #include<QString>
 #include "loginpage.h"
+#include <QMessageBox>
 
 //Think about this user Finance friend class of user
 class Stock

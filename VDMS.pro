@@ -22,9 +22,9 @@ SOURCES += main.cpp\
     user.cpp \
     DownloadManager.cpp \
     stocksearch.cpp \
-    dummyfordownload.cpp \
     stock.cpp \
-    stocklist.cpp
+    stocklist.cpp \
+    dummyfordownload.cpp
 
 HEADERS  += mainwindow.h \
     newusersetup.h \
@@ -33,9 +33,9 @@ HEADERS  += mainwindow.h \
     user.h \
     DownloadManager.h \
     stocksearch.h \
-    dummyfordownload.h \
     stock.h \
-    stocklist.h
+    stocklist.h \
+    dummyfordownload.h
 
 FORMS    += mainwindow.ui \
     newusersetup.ui \

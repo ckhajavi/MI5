@@ -15,6 +15,8 @@ public:
     explicit DummyForDownload(QWidget *parent = 0);
     ~DummyForDownload();
 
+    void ProgressBar();
+
 private:
     Ui::DummyForDownload *ui;
 };
