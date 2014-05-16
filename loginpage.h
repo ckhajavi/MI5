@@ -32,7 +32,7 @@ class LoginPage : public QDialog
 
 public:
     explicit LoginPage(QWidget *parent = 0);
-    void setCurrentUser(User*);
+    void setCurrentUser(const QString&);
 
     void logOut();
     //logOut

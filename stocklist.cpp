@@ -151,4 +151,6 @@ double StockList::getTotalGains()
 
 StockList::~StockList(){
     delete stockMap;
+    stockMap = NULL;
+
 }

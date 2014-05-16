@@ -10,12 +10,13 @@ LoginPage::LoginPage(QWidget *parent) :
     ui->setupUi(this);
     currentUser = new User;
 }
-void LoginPage::setCurrentUser(User* theUser)
+void LoginPage::setCurrentUser(const QString& email)
 {
-    currentUser->setEmail(theUser->getEmail());
-    currentUser = theUser;  //set adresses equal to each other
-    currentUser->userStockList->setTodaysGains();    //set todays gains
-    QString todaysGains = QString::number(currentUser->userStockList->getTodaysGains());
+    currentUser->setEmail(email);
+    currentUser->setFileName();
+    currentUser->setStockFile();
+    currentUser->loadUser();
+    currentUser->loadStockList();
     updateAccountSummary();
 }
 

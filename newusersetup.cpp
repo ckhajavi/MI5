@@ -45,6 +45,7 @@ void NewUserSetup::on_pushButton1_clicked()
         //currentUser.setSecurityQuestion2(ui->comboBox_securityQuestion2);
         //currentUser.setSecurityQuestion1(ui->comboBox_securityQuestion1->text());
         currentUser.setSSN(ui->lineEdit_plainTextSSN->text());
+        currentUser.setUserFunds(10000);
         currentUser.setFileName();
         currentUser.saveUser();
 

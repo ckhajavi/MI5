@@ -9,8 +9,8 @@ User::User()
 }
 User::~User()
 {
-    delete userStockList->stockMap;
     delete userStockList;
+    userStockList = NULL;
 }
 
 bool User::setDirectory(){
@@ -457,4 +457,5 @@ double User::getUserFunds() const
 {
     return userFunds;
 }
+
 

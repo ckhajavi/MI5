@@ -7,17 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    currentUser = new User;
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    if( currentUser != NULL)
-    {
-        delete currentUser;
-    }
 }
 
 //Creates new user window
@@ -41,14 +36,14 @@ void MainWindow::on_btnForgotPass_clicked()
 //Creates Main Login page after Logging in
 void MainWindow::on_btnLogIn_clicked()
 {
-                                        // create an User object (it's empty right now)
-    currentUser->setFileName(ui->lineEditUserName->text());  //sets the path to where the user info is saved
-    currentUser->loadUser();
-    currentUser->setStockFile();    // loads user info from text file and populates the objects variables with values
-    currentUser->loadStockList();
-    QString password = currentUser->getPassword();           // create a variable password and set it equal to user's password
+    User tempUser;                                    // create an User object (it's empty right now)
+    tempUser.setFileName(ui->lineEditUserName->text());  //sets the path to where the user info is saved
+    tempUser.loadUser();
+    tempUser.setStockFile();    // loads user info from text file and populates the objects variables with values
+    tempUser.loadStockList();
+    QString password = tempUser.getPassword();           // create a variable password and set it equal to user's password
     //check to see if password matches
-    if( !currentUser->loadUser())
+    if( !tempUser.loadUser())
     {
         QMessageBox::information(this, "Login Failed", "sorry could not find user");
         qDebug() << "sorry could not find user" <<endl;
@@ -57,7 +52,7 @@ void MainWindow::on_btnLogIn_clicked()
     {
 
         myLoginDialog = new LoginPage(this);
-        myLoginDialog->setCurrentUser(currentUser);
+        myLoginDialog->setCurrentUser(tempUser.getEmail());
         myLoginDialog->exec();
         //open the next window
         qDebug() << password;

@@ -47,7 +47,6 @@ private:
     NewUserSetup *newUser;
     ForgotPasswordDialog *forgotPasswordWindow;
     LoginPage *myLoginDialog;
-    User *currentUser;
 };
 
 #endif // MAINWINDOW_H
