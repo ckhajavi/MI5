@@ -37,13 +37,14 @@ void StockList::addStock(const Stock& newStock)
     }*/
 }
 
-void StockList::sellStock( Stock & theStock)
+bool StockList::sellStock( Stock & theStock)
 {
     if (stockMap->contains(theStock.getTicker())) //if stock is already owned
     {
         if (theStock.getShares() > stockMap->value(theStock.getTicker()).getShares())  //if user is trying to sell more than they own
          {
             qDebug() << "sorry not enough shares" <<endl;
+            return false;
             //QMessageBox::information(this, "Cannot Complete Transaction", "Sorry you do not own enough shares");
          }
         else if(theStock.getShares() == stockMap->value(theStock.getTicker()).getShares())  //if trying to sell all of the shares of a stock
@@ -51,17 +52,24 @@ void StockList::sellStock( Stock & theStock)
             Stock temp;
             temp = theStock - stockMap->value(theStock.getTicker());
             stockMap->insert(temp.getTicker(), temp);
+<<<<<<< HEAD
+=======
+            return true;
+
+>>>>>>> ff0e63a8194a579775e5daa7aa2884b27c7e6fb7
         }
         else
         {
             Stock temp;
             temp = theStock - stockMap->value(theStock.getTicker());
             stockMap->insert(temp.getTicker(), temp);
+            return true;
         }
     }
     else
     {
         qDebug() << "Cannot sell a stock you do not own" <<endl;
+        return false;
     }
 }
 

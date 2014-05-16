@@ -21,7 +21,7 @@ public:
 
     void addStock(const Stock&);//called when user buys a stock.
     void deleteStock(const Stock&);//deletes a stock from the userMap
-    void sellStock(Stock&); //updates the list when a stock is sold.  Checks to see if stock is owned and if the number of shares user owns
+    bool sellStock(Stock&); //updates the list when a stock is sold.  Checks to see if stock is owned and if the number of shares user owns
     //                        is more than the number of shares user is trying to sell. parameter is the stock user wants to sell
 
     //These are like update functions, updates their member variables

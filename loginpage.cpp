@@ -211,19 +211,21 @@ void LoginPage::on_btnSellShares_clicked()
 {
     Stock stockToSell(ui->lineEditSearchSymbol->text()); //creates stock object
     stockToSell.sell(ui->lineEditQuantity->text().toInt()); //sells the stock
-    currentUser->userStockList->sellStock(stockToSell); //update map of stocks
-    int numOfRows = ui->tableWidget->rowCount();
-    for (int i = numOfRows; i > 0; i--)
+    if(currentUser->userStockList->sellStock(stockToSell))
     {
-        ui->tableWidget->removeRow(i - 1);
-    }
-    addToTable(); //updates ui table
-    double funds = currentUser->getUserFunds();
-    currentUser->setUserFunds(funds + stockToSell.getCost());
-    currentUser->saveStockList();     //save the stocks
-    updateAccountSummary();
+        int numOfRows = ui->tableWidget->rowCount();
+        for (int i = numOfRows; i > 0; i--)
+        {
+            ui->tableWidget->removeRow(i - 1);
+        }
+        addToTable(); //updates ui table
+        double funds = currentUser->getUserFunds();
+        currentUser->setUserFunds(funds + stockToSell.getCost());
+        currentUser->saveStockList();     //save the stocks
+        updateAccountSummary();
 
-    currentUser->saveUser();   //saves the user info
+        currentUser->saveUser();   //saves the user info
+    }
 
 
 
