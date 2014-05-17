@@ -114,7 +114,6 @@ private:
     QString securityAnswer2;
     enumGender gender;
     QMap<QString, QString> userMap; //holds the user information in a map, sorted by variable name. variable name is the key
-    QStringList userArray; //holds the user info, until it is written to a the userMap. We aren't using this anymore actually
     QString fileName; //holds the path to the text file of where we are storing the user's info
     QString stockFile; //holds the path to the text file of where we are storing the list of stocks
     double userFunds;

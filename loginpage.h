@@ -18,6 +18,7 @@
 #include <fstream>
 #include "stock.h"
 #include <QTableWidget>
+
 class User;
 
 using namespace std;
