@@ -166,9 +166,9 @@ void LoginPage::on_btnReset_clicked()
 
 void LoginPage::on_btnBuyShares_clicked()
 {
-    if (ui->lineEdit_TotalCash < ui->lineEditCalculatePurchase) //Not enough money to make trade.
+    if (ui->lineEdit_TotalCash->text().toInt() < ui->lineEditCalculatePurchase->text().toInt()) //Not enough money to make trade.
     {
-        QMessageBox::information(this, "Insufficient Funds", "Sorry, you do not have enough funds to make this purchase. Find a better job buddy!");
+        QMessageBox::information(this, "Insufficient Funds", "Sorry, you do not have enough funds to make this purchase.");
     }
     else
     {
