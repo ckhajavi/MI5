@@ -6,6 +6,12 @@
 # include <QtCore>
 # include <QtGui>
 #include <QMessageBox>
+#include <QString>
+#include <string>
+#include <QObject>
+
+
+
 
 namespace Ui {
 class ForgotPasswordDialog;

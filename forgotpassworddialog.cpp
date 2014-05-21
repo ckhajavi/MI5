@@ -7,7 +7,6 @@ ForgotPasswordDialog::ForgotPasswordDialog(QWidget *parent) : QDialog(parent), u
 {
 
     ui->setupUi(this);
-    delete ui;
 }
 
 ForgotPasswordDialog::~ForgotPasswordDialog()
@@ -17,5 +16,8 @@ ForgotPasswordDialog::~ForgotPasswordDialog()
 
 void ForgotPasswordDialog::on_btnSubPassRetrieve_clicked()
 {
-    QMessageBox::information(this, "Password Retrieval", "You're an asshole for forgetting your passowrd!");
+    if (ui->lineEditRetrieve->text() == "mprigmore1@gmail.com")
+    {
+         QMessageBox::information(this, "Password Retrieval", "Your password is: password");
+    }
 }
