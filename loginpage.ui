@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Home</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
@@ -210,7 +210,6 @@
         <string>Search Stock</string>
        </property>
       </widget>
-      <zorder>layoutWidget</zorder>
       <zorder>layoutWidget</zorder>
       <zorder>btnRefresh</zorder>
       <zorder>btnRemoveStock</zorder>
