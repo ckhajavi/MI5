@@ -14,7 +14,7 @@
 #include <QString>
 #include "stocksearch.h"
 #include <QNetworkAccessManager>
-#include <dummyfordownload.h>
+#include "dummyfordownload.h"
 #include <fstream>
 #include "stock.h"
 #include <QTableWidget>
