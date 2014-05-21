@@ -209,6 +209,36 @@ void LoginPage::on_btnRefresh_clicked()
     }
     addToTable();
     qDebug() << "got here"<<endl;
+
+    //The following code DOES THE DOWNLOAD and writes to StockInfo.txt.
+    //We need to parse the file and update the stockList
+
+    QString stockSymbol;
+    int lengthOfString;
+
+    //Grabs the stock symbols of each stock and downloads current data.
+    QMap<QString, Stock>::const_iterator i = currentUser->userStockList->stockMap->constBegin(); //using an iterator to iterate through the Map
+    while (i != currentUser->userStockList->stockMap->constEnd())
+    {
+
+        stockSymbol += i.value().getTicker() + ",";
+        i++;
+    }
+
+    lengthOfString = stockSymbol.length();
+    stockSymbol.truncate(lengthOfString - 1);
+
+    QString baseURL = "http://download.finance.yahoo.com/d/quotes.txt?s=";
+    QString urlFormatting = "&f=sl1d1t1c1ohgv&e=.txt";
+
+    QUrl thisURL = (QUrl) (baseURL + stockSymbol + urlFormatting);
+    DownloadManager manager;
+    manager.doDownload(thisURL);
+
+    //This dummy window has to open in order to download Data from YahooFinance...Click EXIT once immediately.
+    dummyWindow = new DummyForDownload(this);
+    dummyWindow->exec();
+    dummyWindow->close();
 }
 
 void LoginPage::on_btnRemoveStock_clicked()
