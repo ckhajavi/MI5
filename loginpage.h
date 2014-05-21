@@ -18,6 +18,7 @@
 #include <fstream>
 #include "stock.h"
 #include <QTableWidget>
+#include "updateuserinfo.h"
 
 class User;
 
@@ -70,11 +71,14 @@ private slots:
 
     void updateAccountSummary();
 
+    void on_btnUpdateInfo_clicked();
+
 private:
   //  Ui::LoginPage *ui;
     StockSearch *stockSearchWindow;
     DummyForDownload *dummyWindow;
     User* currentUser;
+    UpDateUserInfo *updateWindow;
     Ui::LoginPage *ui;
 };
 

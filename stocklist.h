@@ -1,20 +1,21 @@
 #ifndef STOCKLIST_H
 #define STOCKLIST_H
 #include <QMap>
-#include "stock.h"
-#include "loginpage.h"
+//#include "stock.h"
+//#include "loginpage.h"
 #include <QString>
 #include <QTableWidget>
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include "stock.h"
 
 
 
 class StockList
 {
 public:
-    friend class User;
+    //friend class User;
 
     StockList();
     QMap<QString, Stock> *stockMap; //stock objects held in a map

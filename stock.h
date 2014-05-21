@@ -3,7 +3,10 @@
 
 
 #include<QString>
-#include "loginpage.h"
+//#include "loginpage.h"
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
 #include <QMessageBox>
 
 //Think about this user Finance friend class of user

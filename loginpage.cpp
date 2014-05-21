@@ -234,12 +234,6 @@ void LoginPage::on_btnSellShares_clicked()
         int newTrade = ui->lineEdit_TodaysTrades->text().toInt() + 1;
         ui->lineEdit_TodaysTrades->setText(QString::number(newTrade));
     }
-
-
-
-
-    //stockTosell = ui->tableWidget->row()
-    //int stockToSell = ui->tableWidget->row((ui->lineEditSearchSymbol->text));
 }
 
 void LoginPage::updateAccountSummary()
@@ -262,4 +256,12 @@ void LoginPage::updateAccountSummary()
     double totalNum = currentUser->getUserFunds() + currentUser->userStockList->getStockTotal();
     QString totalString = QString::number(totalNum);
     ui->lineEdit_TotalValue->setText(totalString);
+}
+
+void LoginPage::on_btnUpdateInfo_clicked()
+{
+    updateWindow = new UpDateUserInfo(this);
+    updateWindow->setCurrentUser(currentUser->getEmail());
+    updateWindow->exec();
+
 }

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     stocksearch.cpp \
     stock.cpp \
     stocklist.cpp \
-    dummyfordownload.cpp
+    dummyfordownload.cpp \
+    updateuserinfo.cpp
 
 HEADERS  += mainwindow.h \
     newusersetup.h \
@@ -35,11 +36,13 @@ HEADERS  += mainwindow.h \
     stocksearch.h \
     stock.h \
     stocklist.h \
-    dummyfordownload.h
+    dummyfordownload.h \
+    updateuserinfo.h
 
 FORMS    += mainwindow.ui \
     newusersetup.ui \
     forgotpassworddialog.ui \
     loginpage.ui \
     stocksearch.ui \
-    dummyfordownload.ui
+    dummyfordownload.ui \
+    updateuserinfo.ui

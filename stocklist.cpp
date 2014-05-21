@@ -2,6 +2,7 @@
 #include <QTableWidgetItem>
 
 
+
 StockList::StockList()
 {
     stockMap = new QMap<QString, Stock>;

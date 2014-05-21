@@ -89,10 +89,12 @@ void NewUserSetup::on_pushButton1_clicked()
         currentUser.setUserFunds(10000);
         currentUser.setFileName();
         currentUser.saveUser();
+        this->close();
     }
     else
     {
         qDebug() << "correct the fields in red" <<endl;
     }
+
 
 }

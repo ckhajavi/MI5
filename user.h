@@ -10,7 +10,8 @@
 #include <QDebug>
 #include<Qmap>
 #include<QStringList>
-#include<stocklist.h>
+#include"stocklist.h"
+
 
 using namespace std;
 
@@ -21,8 +22,6 @@ class User
 {
 public:
    friend class StockList;
-    //default constructor
-    //friend class NewUserSetup;
     User();
     ~User();
     StockList *userStockList; //list of stocks

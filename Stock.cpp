@@ -1,5 +1,5 @@
 #include "stock.h"
-#include "stockList.h"
+
 
 
 Stock::Stock()
