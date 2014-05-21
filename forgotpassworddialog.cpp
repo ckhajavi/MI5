@@ -16,14 +16,18 @@ ForgotPasswordDialog::~ForgotPasswordDialog()
 
 void ForgotPasswordDialog::on_btnSubPassRetrieve_clicked()
 {
-    if (ui->lineEditRetrieve->text() == "prig@gmail.com")
+    User currentUser;
+    currentUser.setEmail(ui->lineEditRetrieve->text());
+    currentUser.setFileName();
+    if(currentUser.loadUser())
     {
-         QMessageBox::information(this, "Password Retrieval", "Your password is: password");
-         this->close();
+        QMessageBox::information(this, "Your Passwrod is", currentUser.getPassword() );
+        this->close();
     }
     else
     {
         QMessageBox::information(this, "User not found", "Sorry, the email you entered does not exist.");
         ui->lineEditRetrieve->clear();
     }
+
 }

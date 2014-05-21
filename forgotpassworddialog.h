@@ -9,6 +9,7 @@
 #include <QString>
 #include <string>
 #include <QObject>
+#include "user.h"
 
 
 
