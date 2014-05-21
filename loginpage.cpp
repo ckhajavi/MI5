@@ -241,6 +241,10 @@ void LoginPage::on_btnSellShares_clicked()
         int newTrade = ui->lineEdit_TodaysTrades->text().toInt() + 1;
         ui->lineEdit_TodaysTrades->setText(QString::number(newTrade));
     }
+    else
+    {
+        QMessageBox::information(this, "Insufficient Shares", "Sorry, you do not own enough shares to sell.");
+    }
 }
 
 void LoginPage::updateAccountSummary()
