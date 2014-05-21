@@ -2,7 +2,6 @@
 #define NEWUSERSETUP_H
 
 #include <QDialog>
-//#include"addfilepath.h"
 #include "user.h"
 
 namespace Ui {

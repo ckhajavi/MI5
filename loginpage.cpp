@@ -167,13 +167,13 @@ void LoginPage::on_btnReset_clicked()
 void LoginPage::on_btnBuyShares_clicked()
 {
     //TESTING for errors...
-    int myCash = ui->lineEdit_TotalCash->text().toInt();
+    int myCash = ui->lineEdit_TotalCash->text().toDouble();
     qDebug() << myCash;
-    int stockPrice = ui->lineEditCalculatePurchase->text().toInt();
+    int stockPrice = ui->lineEditCalculatePurchase->text().toDouble();
     qDebug() << stockPrice;
 
     //Never enters first if statement not matter what, they return 0 for both for some reason...
-    if (ui->lineEdit_TotalCash->text().toInt() < ui->lineEditCalculatePurchase->text().toInt()) //Not enough money to make trade.
+    if (ui->lineEdit_TotalCash->text().toDouble() < ui->lineEditCalculatePurchase->text().toDouble()) //Not enough money to make trade.
     {
         QMessageBox::information(this, "Insufficient Funds", "Sorry, you do not have enough funds to make this purchase.");
     }

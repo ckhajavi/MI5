@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-//#include "DownloadManager.h"
 #include <QApplication>
 #include <QtSql>
 #include <QtDebug>

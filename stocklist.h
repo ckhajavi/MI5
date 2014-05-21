@@ -1,8 +1,6 @@
 #ifndef STOCKLIST_H
 #define STOCKLIST_H
 #include <QMap>
-//#include "stock.h"
-//#include "loginpage.h"
 #include <QString>
 #include <QTableWidget>
 #include <QFile>

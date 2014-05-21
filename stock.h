@@ -3,7 +3,6 @@
 
 
 #include<QString>
-//#include "loginpage.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
