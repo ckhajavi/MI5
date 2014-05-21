@@ -210,6 +210,13 @@
         <string>Search Stock</string>
        </property>
       </widget>
+      <zorder>layoutWidget</zorder>
+      <zorder>layoutWidget</zorder>
+      <zorder>btnRefresh</zorder>
+      <zorder>btnRemoveStock</zorder>
+      <zorder>btnUpdateInfo</zorder>
+      <zorder>btnSearch</zorder>
+      <zorder>btnLogOut1</zorder>
      </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
