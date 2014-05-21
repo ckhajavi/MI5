@@ -136,6 +136,35 @@ double Stock::getOpenPrice() const
     return openPrice;
 }
 
+QString Stock::getDate() const
+{
+    return date;
+}
+
+QString Stock::getTime() const
+{
+    return time;
+}
+
+double Stock::getChangeInPrice() const
+{
+    return changeInPrice;
+}
+
+double Stock::getTodaysHigh() const
+{
+    return todaysHigh;
+}
+
+double Stock::getTodaysLow() const
+{
+    return todaysLow;
+}
+
+double Stock::getVolume()const
+{
+    return volume;
+}
 
 
 

@@ -57,7 +57,13 @@ private slots:
 
     void on_btnReset_clicked();
 
-    void on_btnMakeTrade_clicked();
+    void on_btnBuyShares_clicked();
+
+    void on_btnRefresh_clicked();
+
+    void on_btnRemoveStock_clicked();
+
+    void on_btnSellShares_clicked();
 
 private:
   //  Ui::LoginPage *ui;

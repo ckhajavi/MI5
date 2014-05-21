@@ -16,8 +16,10 @@ public:
     StockList();
     QMap<QString, Stock> *stockMap;
     ~StockList();
+    bool setDirectory();
     bool saveStockList();
     bool loadStockList();
+
 
     void addStock(const Stock&);
     void deleteStock();
@@ -40,6 +42,7 @@ private:
     double stockTotal;
     double todaysGains;
     double totalGains;
+    QString fileName;
 };
 
 #endif // STOCKLIST_H
