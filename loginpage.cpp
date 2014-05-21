@@ -187,6 +187,10 @@ void LoginPage::on_btnBuyShares_clicked()
         updateAccountSummary();
         currentUser->saveStockList();     //save the stocks
         currentUser->saveUser();  //saves the user info
+
+        //Increases todays trade by 1
+        int newTrade = ui->lineEdit_TodaysTrades->text().toInt() + 1;
+        ui->lineEdit_TodaysTrades->setText(QString::number(newTrade));
     }
 }
 
@@ -225,6 +229,10 @@ void LoginPage::on_btnSellShares_clicked()
         updateAccountSummary();
 
         currentUser->saveUser();   //saves the user info
+
+        //Increases todays trade by 1
+        int newTrade = ui->lineEdit_TodaysTrades->text().toInt() + 1;
+        ui->lineEdit_TodaysTrades->setText(QString::number(newTrade));
     }
 
 
